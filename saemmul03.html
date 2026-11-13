@@ -1,0 +1,2684 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>샘물교회 — 예수행복 예수사랑</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #F9FAF9;                 /* 1. 전체 기본 배경 */
+    --bg-tint: #EDF2F3;                 /* 2. 섹션 구분 보조 배경 */
+    --line-hair: #D5E0E2;               /* 2. 1px 구분선 */
+    --ink-navy: #162542;                /* 3. 기본 본문 및 제목 텍스트 */
+    --ink-sub: rgba(22, 37, 66, 0.74);  /* 딥네이비 톤다운 보조 본문 */
+    --brand-teal: #1B6B73;              /* 4. 메인 브랜드 컬러 (딥틸) */
+    --cta-orange: #E07A2B;              /* 5. 핵심 강조 포인트 (웜오렌지) */
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--ink-navy);
+    line-height: 1.78;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif {
+    font-family: 'Noto Serif KR', serif;
+  }
+
+  /* =========================================================
+     상단 마스트헤드 & PC/모바일 네비게이션
+     ========================================================= */
+  header.masthead {
+    background-color: rgba(249, 250, 249, 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line-hair);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+
+  .masthead-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 16px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .brand-lockup:hover {
+    opacity: 0.85;
+  }
+
+  .brand-main {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.52rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    letter-spacing: -0.6px;
+    line-height: 1.1;
+  }
+
+  .brand-sub-stack {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--line-hair);
+    padding-left: 10px;
+    line-height: 1.25;
+  }
+
+  .brand-motto {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(22, 37, 66, 0.48);
+    letter-spacing: 0.4px;
+  }
+
+  .brand-eng {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--brand-teal);
+    letter-spacing: 0.7px;
+  }
+
+  .gnb-nav {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .gnb-link {
+    background: none;
+    border: none;
+    padding: 6px 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink-sub);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.22s ease;
+  }
+
+  .gnb-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: -2px;
+    height: 1.5px;
+    background-color: var(--brand-teal);
+    transition: left 0.25s ease, right 0.25s ease;
+  }
+
+  .gnb-link:hover {
+    color: var(--ink-navy);
+  }
+
+  .gnb-link:hover::after,
+  .gnb-link.active::after {
+    left: 0;
+    right: 0;
+  }
+
+  .gnb-link.active {
+    color: var(--brand-teal);
+    font-weight: 700;
+  }
+
+  /* 모바일 햄버거 버튼 & 아코디언 드로어 */
+  .hamburger-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--line-hair);
+    padding: 8px 10px;
+    color: var(--ink-navy);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .mobile-drawer {
+    display: none;
+    background-color: var(--bg-base);
+    border-bottom: 1px solid var(--line-hair);
+    padding: 8px 6% 20px;
+  }
+
+  .mobile-drawer.open { display: block; }
+
+  .m-acc-item { border-bottom: 1px solid var(--line-hair); }
+
+  .m-acc-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 13px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    cursor: pointer;
+  }
+
+  .m-acc-trigger span.arrow {
+    font-size: 0.75rem;
+    color: var(--brand-teal);
+    transition: transform 0.22s ease;
+  }
+
+  .m-acc-item.expanded .m-acc-trigger span.arrow { transform: rotate(180deg); }
+
+  .m-acc-panel {
+    display: none;
+    padding: 4px 0 12px 12px;
+    border-left: 1.5px solid var(--brand-teal);
+    margin-bottom: 8px;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .m-acc-item.expanded .m-acc-panel { display: flex; }
+
+  .m-sub-btn {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 6px 0;
+    font-size: 0.86rem;
+    color: var(--ink-sub);
+    cursor: pointer;
+  }
+
+  .m-sub-btn:hover { color: var(--brand-teal); font-weight: 600; }
+
+  .view-section { display: none; }
+  .view-section.active { display: block; }
+
+  .wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+
+  /* =========================================================
+     심플 CTA 스타일
+     ========================================================= */
+  .simple-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--brand-teal);
+    padding: 2px 0;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--brand-teal);
+    text-decoration: none;
+    cursor: pointer;
+    width: fit-content;
+    transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+  }
+
+  .simple-cta:hover {
+    color: var(--ink-navy);
+    border-bottom-color: var(--ink-navy);
+    gap: 10px;
+  }
+
+  .simple-cta-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid var(--line-hair);
+    padding: 9px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-navy);
+    text-decoration: none;
+    cursor: pointer;
+    width: fit-content;
+    transition: border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+  }
+
+  .simple-cta-box:hover {
+    border-color: var(--brand-teal);
+    background-color: var(--bg-tint);
+    color: var(--brand-teal);
+  }
+
+  .photo-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: var(--bg-tint);
+    border: 1px solid var(--line-hair);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    color: var(--ink-sub);
+    font-size: 0.85rem;
+  }
+
+  .photo-frame.tall { aspect-ratio: 3 / 4; }
+  .photo-frame.wide { aspect-ratio: 16 / 9; }
+
+  .photo-frame strong {
+    font-weight: 600;
+    color: var(--ink-navy);
+    margin-bottom: 4px;
+  }
+
+  /* =========================================================
+     [VIEW 0] 풀페이지 오토플레이 히어로 캐러셀 (비주얼 중심)
+     ========================================================= */
+  .full-hero-carousel {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 68px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--line-hair);
+    background-color: var(--bg-base);
+    overflow: hidden;
+  }
+
+  .hero-slide-item {
+    display: none;
+    width: 100%;
+    padding: 40px 0 64px;
+    animation: gentleFade 0.55s ease;
+  }
+
+  .hero-slide-item.active {
+    display: block;
+  }
+
+  @keyframes gentleFade {
+    from { opacity: 0.35; }
+    to { opacity: 1; }
+  }
+
+  .full-slide-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 76vh;
+    background-color: var(--ink-navy);
+    color: var(--bg-base);
+    border: 1px solid var(--line-hair);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 36px;
+    position: relative;
+  }
+
+  .full-slide-frame.sermon-slide {
+    background-color: var(--bg-tint);
+    color: var(--ink-navy);
+  }
+
+  .slide-kicker {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--brand-teal);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .full-slide-frame:not(.sermon-slide) .slide-kicker {
+    color: #9ED0D5;
+  }
+
+  .slide-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.38;
+    margin-bottom: 14px;
+    letter-spacing: -0.6px;
+  }
+
+  .slide-desc {
+    font-size: 0.96rem;
+    opacity: 0.84;
+    max-width: 560px;
+    margin-bottom: 24px;
+  }
+
+  /* 풀페이지 하단 작은 점(Dot) 페이지네이션 & 호버 일시정지 표시 */
+  .hero-dots-bar {
+    position: absolute;
+    bottom: 22px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+  }
+
+  .dot-btn {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid var(--brand-teal);
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .dot-btn.active {
+    background-color: var(--brand-teal);
+    transform: scale(1.25);
+  }
+
+  .pause-indicator {
+    font-size: 0.74rem;
+    color: var(--ink-sub);
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .full-hero-carousel:hover .pause-indicator {
+    opacity: 1;
+  }
+
+  /* 방문자 우선 정보 3단 스트립 */
+  .essential-section {
+    padding: 56px 0 64px;
+    border-bottom: 1px solid var(--line-hair);
+  }
+
+  .essential-full-strip {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 0.95fr;
+    gap: 36px;
+  }
+
+  .ess-col {
+    padding-right: 28px;
+    border-right: 1px solid var(--line-hair);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .ess-col:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .ess-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .ess-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    margin-bottom: 8px;
+    line-height: 1.48;
+  }
+
+  .ess-detail {
+    font-size: 0.89rem;
+    color: var(--ink-sub);
+    line-height: 1.68;
+    margin-bottom: 16px;
+  }
+
+  /* 메인 주일 1~4부 미니 표 */
+  .mini-worship-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--ink-navy);
+    font-size: 0.86rem;
+    margin-bottom: 12px;
+  }
+
+  .mini-worship-table td {
+    padding: 7px 6px;
+    border-bottom: 1px solid var(--line-hair);
+    color: var(--ink-navy);
+  }
+
+  .mini-worship-table td.time {
+    font-weight: 700;
+    color: var(--brand-teal);
+  }
+
+  .mini-worship-table td.note {
+    font-size: 0.8rem;
+    color: var(--ink-sub);
+    text-align: right;
+  }
+
+  /* 메인 에디토리얼 섹션 */
+  .ed-section {
+    padding: 84px 0;
+    border-bottom: 1px solid var(--line-hair);
+  }
+
+  .ed-section.tinted {
+    background-color: var(--bg-tint);
+  }
+
+  .asym-2 {
+    display: grid;
+    grid-template-columns: 0.72fr 1.28fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .asym-2-rev {
+    display: grid;
+    grid-template-columns: 1.22fr 0.78fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .sec-kicker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    display: block;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .sec-heading {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.92rem;
+    font-weight: 700;
+    line-height: 1.42;
+    letter-spacing: -0.5px;
+    color: var(--ink-navy);
+    margin-bottom: 18px;
+  }
+
+  .editorial-list {
+    border-top: 1px solid var(--line-hair);
+  }
+
+  .ed-row {
+    padding: 22px 12px;
+    border-bottom: 1px solid var(--line-hair);
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: 20px;
+    align-items: baseline;
+    cursor: pointer;
+    transition: background-color 0.22s ease, padding-left 0.22s ease;
+  }
+
+  .ed-row:hover {
+    background-color: var(--bg-tint);
+    padding-left: 18px;
+  }
+
+  .ed-row:hover .ed-row-title {
+    color: var(--brand-teal);
+  }
+
+  .ed-row-meta {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+  }
+
+  .ed-row-title {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+  }
+
+  .ed-row-desc {
+    font-size: 0.9rem;
+    color: var(--ink-sub);
+    margin-top: 4px;
+  }
+
+  /* =========================================================
+     서브페이지 공통 2단 매거진 레이아웃
+     ========================================================= */
+  .sub-masthead {
+    padding: 48px 0 36px;
+    background-color: var(--bg-tint);
+    border-bottom: 1px solid var(--line-hair);
+  }
+
+  .sub-masthead span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .sub-masthead h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    letter-spacing: -0.6px;
+  }
+
+  .sub-layout {
+    padding: 52px 0 104px;
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .side-index {
+    position: sticky;
+    top: 86px;
+    border-top: 1px solid var(--ink-navy);
+    padding-top: 16px;
+  }
+
+  .side-index-head {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    margin-bottom: 14px;
+  }
+
+  .side-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .side-nav-list li {
+    border-bottom: 1px solid var(--line-hair);
+  }
+
+  .side-link {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    border-left: 2px solid transparent;
+    padding: 11px 0 11px 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-sub);
+    cursor: pointer;
+    transition: color 0.2s ease, padding-left 0.2s ease, border-color 0.2s ease;
+  }
+
+  .side-link:hover {
+    color: var(--ink-navy);
+    padding-left: 14px;
+    border-left-color: var(--line-hair);
+  }
+
+  .side-link.active {
+    color: var(--brand-teal);
+    font-weight: 700;
+    padding-left: 14px;
+    border-left-color: var(--brand-teal);
+  }
+
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; }
+
+  .article-head {
+    padding-bottom: 24px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--line-hair);
+  }
+
+  .article-head h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.95rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .article-head p {
+    font-size: 0.98rem;
+    color: var(--ink-sub);
+  }
+
+  .article-block {
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--line-hair);
+  }
+
+  .article-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .block-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.32rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    margin-bottom: 16px;
+  }
+
+  .prose p {
+    font-size: 0.97rem;
+    color: var(--ink-sub);
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--ink-navy); font-weight: 700; }
+
+  /* 개조식 불릿 리스트 */
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bullet-list li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 0.95rem;
+    color: var(--ink-sub);
+    line-height: 1.78;
+  }
+
+  .bullet-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--brand-teal);
+    font-weight: 700;
+  }
+
+  .bullet-list li strong { color: var(--ink-navy); }
+
+  /* 번호만 표시하는 개조식 리스트 */
+  .numbered-flow-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .numbered-flow-list li {
+    padding-left: 0;
+    font-size: 0.95rem;
+    color: var(--ink-sub);
+    line-height: 1.78;
+  }
+
+  .numbered-flow-list li strong {
+    color: var(--ink-navy);
+  }
+
+  /* 문단체 에디토리얼 항목 리스트 */
+  .essay-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .essay-item {
+    padding-left: 18px;
+    border-left: 2px solid var(--line-hair);
+    transition: border-color 0.25s ease, padding-left 0.25s ease;
+  }
+
+  .essay-item:hover {
+    border-left-color: var(--brand-teal);
+    padding-left: 22px;
+  }
+
+  .essay-item h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    margin-bottom: 6px;
+  }
+
+  .essay-item p {
+    font-size: 0.94rem;
+    color: var(--ink-sub);
+    line-height: 1.8;
+  }
+
+  .essay-meta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--brand-teal);
+    margin-top: 6px;
+  }
+
+  /* 새가족 4가지 기둥 */
+  .pillar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .pillar-item {
+    padding: 12px 16px 12px 22px;
+    border-left: 3px solid var(--line-hair);
+    transition: border-left-color 0.25s ease, background-color 0.25s ease, padding-left 0.25s ease;
+  }
+
+  .pillar-item:hover,
+  .pillar-item.in-focus {
+    border-left-color: var(--cta-orange);
+    background-color: var(--bg-tint);
+    padding-left: 26px;
+  }
+
+  .pillar-item h4 {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    margin-bottom: 6px;
+  }
+
+  .pillar-item p {
+    font-size: 0.94rem;
+    color: var(--ink-sub);
+    line-height: 1.8;
+  }
+
+  /* 주일학교 부서 행 */
+  .dept-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 28px;
+    align-items: center;
+    padding: 24px 0 24px 18px;
+    border-bottom: 1px solid var(--line-hair);
+    border-left: 3px solid transparent;
+    transition: border-left-color 0.25s ease, background-color 0.25s ease, padding-left 0.25s ease;
+  }
+
+  .dept-row:hover {
+    border-left-color: var(--brand-teal);
+    background-color: var(--bg-tint);
+    padding-left: 24px;
+  }
+
+  .dept-row h4 {
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    margin-bottom: 6px;
+  }
+
+  .dept-row p {
+    font-size: 0.93rem;
+    color: var(--ink-sub);
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  .dept-meta {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--brand-teal);
+  }
+
+  /* 섬기는 사람들 그리드 및 상단 앵커 네비게이션 */
+  .staff-anchor-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 18px;
+    background-color: var(--bg-tint);
+    border: 1px solid var(--line-hair);
+    margin-bottom: 36px;
+  }
+
+  .staff-anchor-btn {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    cursor: pointer;
+    padding: 2px 4px;
+    transition: color 0.2s ease;
+  }
+
+  .staff-anchor-btn:hover {
+    color: var(--brand-teal);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .staff-sep {
+    color: var(--line-hair);
+    font-size: 0.85rem;
+  }
+
+  .staff-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .staff-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--ink-navy);
+    margin-top: 10px;
+  }
+
+  .staff-role {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(22, 37, 66, 0.56);
+    margin-top: 2px;
+  }
+
+  /* 교회 시설 안내 */
+  .facility-wrap {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  .building-diagram {
+    border: 1px solid var(--ink-navy);
+    background-color: var(--bg-base);
+  }
+
+  .bldg-roof {
+    background-color: var(--ink-navy);
+    color: var(--bg-base);
+    text-align: center;
+    padding: 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+  }
+
+  .bldg-floor {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line-hair);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.84rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .bldg-floor:last-child { border-bottom: none; }
+  .bldg-floor.ground { border-bottom: 2px solid var(--ink-navy); }
+  .bldg-floor strong { color: var(--brand-teal); font-weight: 800; }
+  .bldg-floor span { font-size: 0.76rem; color: var(--ink-sub); }
+
+  .bldg-floor.is-hovered {
+    background-color: var(--brand-teal);
+    color: var(--bg-base);
+    padding-left: 18px;
+  }
+
+  .bldg-floor.is-hovered strong,
+  .bldg-floor.is-hovered span { color: var(--bg-base); }
+
+  .fac-row { transition: background-color 0.2s ease; cursor: pointer; }
+  .fac-row.is-hovered { background-color: var(--bg-tint); }
+  .fac-row.is-hovered td:first-child { color: var(--brand-teal); }
+
+  .pull-quote {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.24rem;
+    font-weight: 600;
+    line-height: 1.68;
+    color: var(--brand-teal);
+    padding: 20px 0 20px 22px;
+    border-left: 2px solid var(--brand-teal);
+    margin: 24px 0;
+  }
+
+  .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+  .split-asym { display: grid; grid-template-columns: 280px 1fr; gap: 36px; align-items: start; }
+
+  /* 미니멀 표 */
+  .ed-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--ink-navy);
+    font-size: 0.92rem;
+  }
+
+  .ed-table th, .ed-table td {
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--line-hair);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .ed-table th {
+    font-weight: 700;
+    color: var(--ink-navy);
+    background-color: var(--bg-tint);
+  }
+
+  .meta-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    letter-spacing: 0.3px;
+  }
+
+  /* 하단 숫자 페이지네이션 CTA */
+  .pagination-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 28px;
+  }
+
+  .page-num-btn {
+    min-width: 34px;
+    height: 34px;
+    background: none;
+    border: 1px solid var(--line-hair);
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--ink-sub);
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+
+  .page-num-btn:hover {
+    border-color: var(--brand-teal);
+    color: var(--brand-teal);
+  }
+
+  .page-num-btn.active {
+    background-color: var(--brand-teal);
+    border-color: var(--brand-teal);
+    color: var(--bg-base);
+  }
+
+  /* 필터/탭 라인 버튼 */
+  .tab-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--line-hair);
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    padding: 4px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-sub);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .tab-btn.active {
+    color: var(--brand-teal);
+    font-weight: 700;
+  }
+
+  .tab-btn.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -13px;
+    height: 2px;
+    background-color: var(--brand-teal);
+  }
+
+  /* 공통 매거진 푸터 */
+  footer.ed-footer {
+    border-top: 1px solid var(--line-hair);
+    padding: 56px 0 64px;
+    background-color: var(--bg-tint);
+    font-size: 0.88rem;
+    color: var(--ink-sub);
+  }
+
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.24rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    margin-bottom: 8px;
+  }
+
+  /* =========================================================
+     모바일 반응형 규칙
+     ========================================================= */
+  @media (max-width: 960px) {
+    .asym-2, .asym-2-rev, .sub-layout, .split-2, .split-asym, .facility-wrap, .dept-row {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .essential-full-strip { grid-template-columns: 1fr; gap: 22px; }
+    .ess-col { border-right: none; border-bottom: 1px solid var(--line-hair); padding-bottom: 20px; padding-right: 0; }
+    .ess-col:last-child { border-bottom: none; padding-bottom: 0; }
+    .side-index { display: none; }
+    .ed-row { grid-template-columns: 1fr; gap: 6px; }
+    .staff-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .wrap, .masthead-inner {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .gnb-nav { gap: 10px; }
+    .gnb-link { font-size: 0.74rem; letter-spacing: -0.3px; }
+    .hamburger-btn { display: inline-block; }
+    .brand-main { font-size: 1.28rem; }
+    .brand-motto { font-size: 0.65rem; }
+    .brand-eng { font-size: 0.68rem; }
+    .slide-title { font-size: 1.55rem; }
+    .full-hero-carousel { min-height: auto; }
+    body, p, h1, h2, h3, h4, li, td, th, button, a, span {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- 상단 마스트헤드 -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="brand-lockup" onclick="goMain()">
+        <div class="brand-main">샘물교회</div>
+        <div class="brand-sub-stack">
+          <span class="brand-motto">예수행복 예수사랑</span>
+          <span class="brand-eng">SAEMMUL CHURCH</span>
+        </div>
+      </div>
+
+      <nav class="gnb-nav">
+        <button class="gnb-link" id="gnb-intro" onclick="openCategory('intro', 'intro-1')">교회 소개</button>
+        <button class="gnb-link" id="gnb-worship" onclick="openCategory('worship', 'worship-1')">예배와 말씀</button>
+        <button class="gnb-link" id="gnb-house" onclick="openCategory('house', 'house-1')">가정교회/훈련</button>
+        <button class="gnb-link" id="gnb-next" onclick="openCategory('next', 'next-1')">다음세대</button>
+        <button class="gnb-link" id="gnb-mission" onclick="openCategory('mission', 'mission-1')">선교와 섬김</button>
+        <button class="hamburger-btn" aria-label="전체 메뉴 열기" onclick="toggleMobileDrawer()">☰</button>
+      </nav>
+    </div>
+
+    <!-- 모바일 전용 햄버거 아코디언 드로어 -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="m-acc-item">
+        <button class="m-acc-trigger" onclick="toggleMobileAcc(this)">교회 소개 <span class="arrow">▼</span></button>
+        <div class="m-acc-panel">
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-1')">샘물 이야기</button>
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-2')">담임목사님 소개</button>
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-3')">새가족 안내</button>
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-4')">섬기는 사람들</button>
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-5')">교회 소식</button>
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-6')">샘물 포토</button>
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-7')">교회행정 / 장소신청 / 헌금안내</button>
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-8')">교회 시설 안내</button>
+          <button class="m-sub-btn" onclick="mobileNav('intro', 'intro-9')">오시는 길</button>
+        </div>
+      </div>
+
+      <div class="m-acc-item">
+        <button class="m-acc-trigger" onclick="toggleMobileAcc(this)">예배와 말씀 <span class="arrow">▼</span></button>
+        <div class="m-acc-panel">
+          <button class="m-sub-btn" onclick="mobileNav('worship', 'worship-1')">실시간 Live 및 안내</button>
+          <button class="m-sub-btn" onclick="mobileNav('worship', 'worship-2')">주일예배</button>
+          <button class="m-sub-btn" onclick="mobileNav('worship', 'worship-3')">수요기도회</button>
+          <button class="m-sub-btn" onclick="mobileNav('worship', 'worship-4')">새벽기도회</button>
+          <button class="m-sub-btn" onclick="mobileNav('worship', 'worship-5')">청년예배 [4부]</button>
+        </div>
+      </div>
+
+      <div class="m-acc-item">
+        <button class="m-acc-trigger" onclick="toggleMobileAcc(this)">가정교회/훈련 <span class="arrow">▼</span></button>
+        <div class="m-acc-panel">
+          <button class="m-sub-btn" onclick="mobileNav('house', 'house-1')">가정교회(목장)</button>
+          <button class="m-sub-btn" onclick="mobileNav('house', 'house-2')">청년평원</button>
+          <button class="m-sub-btn" onclick="mobileNav('house', 'house-3')">샬롬샘</button>
+          <button class="m-sub-btn" onclick="mobileNav('house', 'house-4')">제자훈련 및 양육</button>
+          <button class="m-sub-btn" onclick="mobileNav('house', 'house-5')">샘물 경조사</button>
+        </div>
+      </div>
+
+      <div class="m-acc-item">
+        <button class="m-acc-trigger" onclick="toggleMobileAcc(this)">다음세대 <span class="arrow">▼</span></button>
+        <div class="m-acc-panel">
+          <button class="m-sub-btn" onclick="mobileNav('next', 'next-1')">주일학교</button>
+          <button class="m-sub-btn" onclick="mobileNav('next', 'next-2')">주일학교 - 게시판</button>
+          <button class="m-sub-btn" onclick="mobileNav('next', 'next-3')">샘물플레싱</button>
+          <button class="m-sub-btn" onclick="mobileNav('next', 'next-4')">샘물학교</button>
+          <button class="m-sub-btn" onclick="mobileNav('next', 'next-5')">샘물 어린이 작은도서관</button>
+        </div>
+      </div>
+
+      <div class="m-acc-item" style="border-bottom:none;">
+        <button class="m-acc-trigger" onclick="toggleMobileAcc(this)">선교와 섬김 <span class="arrow">▼</span></button>
+        <div class="m-acc-panel">
+          <button class="m-sub-btn" onclick="mobileNav('mission', 'mission-1')">섬김사역</button>
+          <button class="m-sub-btn" onclick="mobileNav('mission', 'mission-2')">국내외 선교</button>
+          <button class="m-sub-btn" onclick="mobileNav('mission', 'mission-3')">순교자 기념관</button>
+          <button class="m-sub-btn" onclick="mobileNav('mission', 'mission-4')">협력 기관</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       [VIEW 0] 첫 화면(Hero): 풀페이지 16:9 오토플레이 캐러셀 (요청 문구 전면 삭제)
+       ========================================================= -->
+  <main id="view-home" class="view-section active">
+    <section class="full-hero-carousel" id="heroCarousel" onmouseenter="pauseHeroAuto()" onmouseleave="startHeroAuto()">
+      <!-- 슬라이드 1: 교회 소개 영상 (16:9 풀페이지) -->
+      <div class="hero-slide-item active" id="heroSlide-0">
+        <div class="wrap">
+          <div class="full-slide-frame">
+            <span class="slide-kicker">SAEMMUL CHURCH · VIDEO</span>
+            <p class="slide-desc">[16:9 교회 소개 영상 풀페이지 임베드 영역]</p>
+            <button class="simple-cta" style="color:#9ED0D5; border-bottom-color:#9ED0D5;" onclick="openCategory('intro', 'intro-1')">샘물 이야기 자세히 보기 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 슬라이드 2: 담임목사님 설교 듣기 (16:9 풀페이지) -->
+      <div class="hero-slide-item" id="heroSlide-1">
+        <div class="wrap">
+          <div class="full-slide-frame sermon-slide">
+            <span class="slide-kicker">SUNDAY SERMON · 담임목사 설교 듣기</span>
+            <h2 class="slide-title">“내 안에 고인 행복이 흘러갈 때”</h2>
+            <p class="slide-desc">[16:9 채경락 담임목사 설교 현장 실사 · 요한복음 4:13~14]</p>
+            <button class="simple-cta" onclick="openCategory('worship', 'worship-2')">주일설교 말씀 보러가기 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 하단 작은 점(Dot) 페이지네이션 -->
+      <div class="hero-dots-bar">
+        <button class="dot-btn active" aria-label="1번 슬라이드: 교회 소개 영상" onclick="manualHeroSlide(0)"></button>
+        <button class="dot-btn" aria-label="2번 슬라이드: 담임목사님 설교 듣기" onclick="manualHeroSlide(1)"></button>
+        <span class="pause-indicator">일시정지됨</span>
+      </div>
+    </section>
+
+    <!-- 방문자 우선 정보 3단 스트립 -->
+    <section class="essential-section">
+      <div class="wrap">
+        <div class="essential-full-strip">
+          <!-- 01 주일 예배 시간 -->
+          <div class="ess-col">
+            <div>
+              <span class="ess-label">01 · 주일 예배 시간</span>
+              <table class="mini-worship-table">
+                <tbody>
+                  <tr><td><strong>1부 예배</strong></td><td class="time">오전 08:20</td><td class="note"></td></tr>
+                  <tr><td><strong>2부 예배</strong></td><td class="time">오전 11:00</td><td class="note">유튜브 Live</td></tr>
+                  <tr><td><strong>3부 예배</strong></td><td class="time">오후 01:30</td><td class="note">수어예배 (14:00)</td></tr>
+                  <tr><td><strong>4부 예배</strong></td><td class="time">오후 03:30</td><td class="note">청년예배</td></tr>
+                </tbody>
+              </table>
+              <p class="ess-detail" style="margin-bottom:12px;">
+                본당 2층 대예배실 (주일 2·3부 및 수요·새벽기도 유튜브 실시간 중계)
+              </p>
+            </div>
+            <button class="simple-cta" onclick="openCategory('worship', 'worship-1')">전체 예배 · Live 보기 →</button>
+          </div>
+
+          <!-- 02 오시는 길 및 주차 안내 -->
+          <div class="ess-col">
+            <div>
+              <span class="ess-label">02 · 오시는 길 및 주차 안내</span>
+              <div class="ess-title">정자동 탄천초등학교 맞은편<br>분당타운 (도보 3분)</div>
+              <p class="ess-detail">교회 지하 주차장(B2~B4층) 및 주일 금산주차장 주차지원</p>
+            </div>
+            <button class="simple-cta" onclick="openCategory('intro', 'intro-9')">오시는 길 · 주차 안내 →</button>
+          </div>
+
+          <!-- 03 새가족 안내 -->
+          <div class="ess-col">
+            <div>
+              <span class="ess-label">03 · 새가족 안내</span>
+              <div class="ess-title">주일 2부 예배 후<br>2층 본당 앞 새가족실</div>
+              <p class="ess-detail">등록 안내부터 4주 일대일 기초 성경공부, 목장 연결까지 돕습니다.</p>
+            </div>
+            <button class="simple-cta" onclick="openCategory('intro', 'intro-3')">새가족 안내 보기 →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 비대칭 섹션 1: 담임목사 인사말 -->
+    <section class="ed-section tinted">
+      <div class="wrap asym-2-rev">
+        <div class="prose">
+          <span class="sec-kicker">PASTOR’S GREETING</span>
+          <h2 class="sec-heading">“예수 행복 예수 사랑으로<br>사람을 남기다”</h2>
+          <p>
+            예수님을 만나면 잃어버렸던 삶의 에너지를 다시 얻고, 메말랐던 일상에 해갈의 기쁨이 찾아옵니다. 저는 성도들이 거룩하고 헌신적이기 전에, 먼저 예수님 한 분만으로 진짜 행복한 사람이 되기를 바랍니다.
+          </p>
+          <p style="margin-bottom:26px;">
+            내 안에 고인 행복은 나눌 때 비로소 샘물이 됩니다. 그 기쁨과 은혜의 자리로 여러분을 초대합니다. — <strong>담임목사 채경락</strong>
+          </p>
+          <div style="display:flex; gap:24px; flex-wrap:wrap;">
+            <button class="simple-cta" onclick="openCategory('intro', 'intro-2')">담임목사 소개 전문 →</button>
+            <button class="simple-cta" onclick="openCategory('worship', 'worship-2')">최근 주일 설교 듣기 →</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="photo-frame tall" style="background-color:var(--bg-base);">
+            <strong>[담임목사 채경락 목사 현장 프로필 실사]</strong>
+            <span>권장 비율 3 : 4</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 비대칭 섹션 2: 함께 살아가는 샘물의 자리 -->
+    <section class="ed-section" style="border-bottom:none;">
+      <div class="wrap asym-2">
+        <div>
+          <span class="sec-kicker">COMMUNITY INDEX</span>
+          <h2 class="sec-heading">함께 살아가는<br>샘물의 자리</h2>
+          <p style="font-size:0.94rem; color:var(--ink-sub); margin-bottom:24px;">
+            교회가 비대해지는 대신 건강하게 분립하며, 평신도 목자와 성도가 함께 세워가는 공동체입니다.
+          </p>
+          <button class="simple-cta" onclick="openCategory('intro', 'intro-1')">샘물 이야기 읽기 →</button>
+        </div>
+
+        <div class="editorial-list">
+          <div class="ed-row" onclick="openCategory('house', 'house-1')">
+            <span class="ed-row-meta">HOUSE CHURCH</span>
+            <div>
+              <div class="ed-row-title">가정교회 (목장)</div>
+              <div class="ed-row-desc">매주 가정에 6~12명이 모여 식탁을 나누고, 삶과 기도를 나누는 작은 교회</div>
+            </div>
+            <span class="meta-tag">살펴보기 →</span>
+          </div>
+
+          <div class="ed-row" onclick="openCategory('next', 'next-1')">
+            <span class="ed-row-meta">NEXT GENERATION</span>
+            <div>
+              <div class="ed-row-title">다음세대 주일학교 · 샘물플레싱</div>
+              <div class="ed-row-desc">영아부부터 청소년 임팩틴까지 연령별 예배와 가정예배 프로그램</div>
+            </div>
+            <span class="meta-tag">살펴보기 →</span>
+          </div>
+
+          <div class="ed-row" onclick="openCategory('mission', 'mission-4')">
+            <span class="ed-row-meta">SERVING</span>
+            <div>
+              <div class="ed-row-title">이웃과 함께하는 협력 기관 (말아톤 · 사랑마루 · 선한울타리)</div>
+              <div class="ed-row-desc">발달장애인 돌봄부터 노숙인 자립 지원, 보호종료청소년 멘토링까지 지역사회 이웃을 섬깁니다.</div>
+            </div>
+            <span class="meta-tag">협력 기관 보기 →</span>
+          </div>
+
+          <div class="ed-row" onclick="openCategory('mission', 'mission-1')">
+            <span class="ed-row-meta">MISSION &amp; SERVING</span>
+            <div>
+              <div class="ed-row-title">이웃 섬김과 국내외 선교</div>
+              <div class="ed-row-desc">사랑부·에바다부·상담부·지역사회봉사부·호스피스 및 국내외 파송 선교 동역</div>
+            </div>
+            <span class="meta-tag">살펴보기 →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       [CATEGORY 1] 교회 소개 (9개 메뉴)
+       ========================================================= -->
+  <section id="view-intro" class="view-section">
+    <div class="sub-masthead">
+      <div class="wrap">
+        <span>ABOUT SAEMMUL CHURCH</span>
+        <h1>교회 소개</h1>
+      </div>
+    </div>
+
+    <div class="wrap sub-layout">
+      <aside class="side-index">
+        <div class="side-index-head">교회 소개</div>
+        <ul class="side-nav-list">
+          <li><button class="side-link active" data-panel="intro-1" onclick="switchPanel('intro', 'intro-1')">샘물 이야기</button></li>
+          <li><button class="side-link" data-panel="intro-2" onclick="switchPanel('intro', 'intro-2')">담임목사님 소개</button></li>
+          <li><button class="side-link" data-panel="intro-3" onclick="switchPanel('intro', 'intro-3')">새가족 안내</button></li>
+          <li><button class="side-link" data-panel="intro-4" onclick="switchPanel('intro', 'intro-4')">섬기는 사람들</button></li>
+          <li><button class="side-link" data-panel="intro-5" onclick="switchPanel('intro', 'intro-5')">교회 소식</button></li>
+          <li><button class="side-link" data-panel="intro-6" onclick="switchPanel('intro', 'intro-6')">샘물 포토</button></li>
+          <li><button class="side-link" data-panel="intro-7" onclick="switchPanel('intro', 'intro-7')">교회행정 / 장소신청 / 헌금안내</button></li>
+          <li><button class="side-link" data-panel="intro-8" onclick="switchPanel('intro', 'intro-8')">교회 시설 안내</button></li>
+          <li><button class="side-link" data-panel="intro-9" onclick="switchPanel('intro', 'intro-9')">오시는 길</button></li>
+        </ul>
+      </aside>
+
+      <div>
+        <!-- 1-1 샘물 이야기 -->
+        <div id="intro-1" class="sub-panel active">
+          <div class="article-head">
+            <h2>샘물 이야기</h2>
+            <p>1998년 <strong>“모든 사람을 그리스도의 건강한 제자로 삼겠다”</strong>는 고백에서 시작된 샘물교회의 걸음입니다.</p>
+          </div>
+
+          <div class="article-block prose">
+            <h3 class="block-title">교회가 커지는 대신 건강하게 나뉘는 결단</h3>
+            <p>
+              샘물교회는 서울영동교회의 네 번째 분립개척 교회로 1998년 10월 25일 세워졌습니다. 교인 수가 300~500명을 넘으면 교회를 나눈다는 원칙에 따라 안정된 자리를 내려놓고 분당 정자동에 첫걸음을 내디뎠습니다.
+            </p>
+            <blockquote class="pull-quote">
+              “목회자 한 사람에게 집중되는 권한을 나누고, 지역 곳곳에 건강한 교회를 세우는 신선한 발걸음이었습니다.”
+            </blockquote>
+            <p>
+              샘물교회는 단순히 출석 성도 수가 늘어나는 대형화를 목표로 삼지 않았습니다. 교회가 일정 규모로 자라면 기꺼이 사람과 재정을 나누어 새로운 지역에 건강한 교회를 세우는 일을 공동체의 사명으로 여겨 왔습니다.
+            </p>
+          </div>
+
+          <div class="article-block">
+            <h3 class="block-title">우리가 지향하는 다섯 가지 모습</h3>
+            <div class="essay-list">
+              <div class="essay-item">
+                <h4>01. 말씀과 성령의 교회</h4>
+                <p>성경 말씀을 삶의 유일한 기준으로 삼고, 성령님의 인도하심에 민감하게 순종하며 살아가는 공동체를 지향합니다.</p>
+              </div>
+              <div class="essay-item">
+                <h4>02. 가정을 회복하는 교회</h4>
+                <p>하나님이 세우신 가정의 질서를 존중하고, 부모와 자녀가 신앙 안에서 서로를 축복하며 살아가는 건강한 가정을 세웁니다.</p>
+              </div>
+              <div class="essay-item">
+                <h4>03. 민족과 세계를 품는 교회</h4>
+                <p>복음의 빚진 자로서 분단된 조국의 평화와 열방의 영혼들을 위해 기도하며, 보내는 선교사와 가는 선교사로 동역합니다.</p>
+              </div>
+              <div class="essay-item">
+                <h4>04. 다음세대를 세우는 교회</h4>
+                <p>어린이와 청소년에게 믿음의 유산을 온전히 전수하기 위해 주일학교와 가정예배(샘물플레싱), 샘물학교를 통해 다음세대를 품습니다.</p>
+              </div>
+              <div class="essay-item">
+                <h4>05. 평신도가 사역하는 교회</h4>
+                <p>목회자는 말씀과 기도에 전념하고, 모든 성도는 하나님이 주신 은사를 따라 가정교회 목자와 사역자로 함께 교회를 세워갑니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-block split-2">
+            <div class="prose">
+              <span class="meta-tag">GOVERNANCE &amp; TRANSPARENCY</span>
+              <h3 class="block-title" style="margin-top:6px;">목사·장로 임기제와 투명한 재정</h3>
+              <p>목사는 7년, 장로는 6년 임기를 마친 뒤 성도들의 재신임 투표를 거쳐 섬김의 리더십을 점검합니다. 또한 직분 계급주의를 지양하는 평회원 제도를 지키며, 예산과 결산 및 당회 주요 결정을 성도들에게 투명하게 공개합니다.</p>
+            </div>
+            <div class="prose">
+              <span class="meta-tag">CHURCH PLANTING</span>
+              <h3 class="block-title" style="margin-top:6px;">샘물의 가지로 뿌리내린 교회들</h3>
+              <p>건강하게 나뉘는 분립개척의 약속은 지금까지 네 곳의 자매 교회로 열매 맺었습니다. 2011년 <strong>다우리교회</strong>를 시작으로, 2012년 5월 <strong>좋은나무교회</strong>, 2012년 6월 <strong>은혜샘물교회</strong>, 그리고 2023년 2월 <strong>기쁨샘물교회</strong>가 세워져 각 지역에서 생명의 샘물 역할을 감당하고 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1-2 담임목사님 소개 -->
+        <div id="intro-2" class="sub-panel">
+          <div class="article-head">
+            <h2>담임목사님 소개</h2>
+            <p>“예수 행복, 예수 사랑으로 사람을 남기다”</p>
+          </div>
+          <div class="split-asym">
+            <div>
+              <div class="photo-frame tall" style="margin-bottom:18px;">
+                <strong>[담임목사 채경락 목사 실제 프로필 사진]</strong>
+                <span>권장 비율 3 : 4</span>
+              </div>
+              <h3 class="serif" style="font-size:1.18rem; margin-bottom:8px;">담임목사 채경락</h3>
+              <ul style="list-style:none; font-size:0.86rem; color:var(--ink-sub); line-height:1.78; border-top:1px solid var(--line-hair); padding-top:12px;">
+                <li>서울대학교 B.A</li>
+                <li>고려신학대학원 M.Div</li>
+                <li>미국 칼빈신학교 Th.M</li>
+                <li>미국 남침례신학교 설교학 Ph.D</li>
+                <li style="margin-top:8px;"><strong style="color:var(--ink-navy);">저서 :</strong> 최고신고작, 수련선교, 삶에서 은혜받는 십계명 외</li>
+                <li><strong style="color:var(--ink-navy);">역서 :</strong> 팀 켈러의 설교</li>
+              </ul>
+            </div>
+            <div class="prose">
+              <h3 class="block-title">“예수 행복, 예수 사랑으로 사람을 남기는 샘물교회”</h3>
+              <p>샘물교회 홈페이지를 찾아 주셔서 감사합니다. 주께서 이 자리로 저를 이끄셨듯, 여러분과 만나게 하신 것도 주의 인도하심이라 믿습니다.</p>
+              <p>이 문장은 제가 지어낸 표어가 아니라, 샘물교회를 품고 말씀을 묵상하는 가운데 주께서 주신 꿈이라고 믿습니다. 저는 이 꿈을 저의 목회 비전으로 품고, 샘물교회와 함께 이루어 가고 싶습니다.</p>
+              <p>저는 예수 행복을 아는 목회자되고 싶습니다. 예수님을 만나면 잃어버렸던 에너지를 다시 만나고, 퍽퍽했던 인생에 해갈의 기쁨이 찾아옵니다. 저는 성도들이 거룩하고 헌신적이기 전에, 먼저 예수로 인해 진짜 행복한 사람이 되기를 바랍니다.</p>
+              <blockquote class="pull-quote">
+                “지혜 있는 자는 궁창의 빛과 같이 빛날 것이요, 많은 사람을 옳은 데로 돌아오게 한 자는 별과 같이 영원토록 빛나리라”(단 12:3)
+              </blockquote>
+              <p>내 안에 고인 행복은 나눌 때 비로소 샘물이 됩니다. 이 기쁨과 은혜의 자리로 여러분을 초대합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1-3 새가족 안내 -->
+        <div id="intro-3" class="sub-panel">
+          <div class="article-head">
+            <h2>새가족 안내</h2>
+            <p>주일 2부 예배 후 2층 본당 앞 새가족실에서 등록과 정착을 안내해 드립니다.</p>
+          </div>
+          <div class="article-block">
+            <h3 class="block-title">기초 성경공부 (총 4과 · 일대일 맞춤형 진행)</h3>
+            <ul class="bullet-list">
+              <li><strong>1과. 복음이란 무엇인가? :</strong> 성경이 말씀하는 인간과 죄의 문제, 그리고 예수 그리스도를 통한 구원의 핵심 진리를 함께 나눕니다.</li>
+              <li><strong>2과. 구원의 확인 :</strong> 나의 공로가 아닌 하나님의 은혜와 믿음으로 말미암아 얻는 구원의 은혜를 분명하게 확인합니다.</li>
+              <li><strong>3과. 진리의 터, 교회 :</strong> 샘물교회의 신앙 고백과 건강한 공동체 원리, 가정교회(목장)의 비전을 이해합니다.</li>
+              <li><strong>4과. 구원의 확신 :</strong> 구원받은 하나님의 자녀로서 누리는 확신과 기도의 삶, 그리고 작은목자훈련으로 이어지는 신앙 성장의 길을 안내받습니다.</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3 class="block-title">샘물교회 생활 안내 네 가지 기둥</h3>
+            <div class="pillar-list" id="newcomerPillars">
+              <div class="pillar-item">
+                <h4>01. 목장모임 참석</h4>
+                <p>새가족 교육을 마치면 거주지와 상황에 맞는 목장으로 안내받습니다. 매주 가정에 모여 식탁과 삶을 나누고, 목장이 후원하는 선교사님을 위해 함께 기도합니다.</p>
+              </div>
+              <div class="pillar-item">
+                <h4>02. 주일예배 참석</h4>
+                <p>주중의 분주함과 세속적인 때를 말씀과 기도로 씻어내고, 주일에는 온 성도가 함께 모여 살아 계신 하나님께 온전한 예배를 드립니다.</p>
+              </div>
+              <div class="pillar-item">
+                <h4>03. 은사따라 섬김</h4>
+                <p>주일학교 교사와 찬양대원, 안내와 봉사 부서 등 하나님께서 각자에게 주신 재능과 은사를 따라 기쁨으로 교회를 섬깁니다.</p>
+              </div>
+              <div class="pillar-item">
+                <h4>04. 작은목자훈련 (삶공부)</h4>
+                <p>생명의 삶 · 새로운 삶 · 경건의 삶 · 하나님을 경험하는 삶 등 단계별 훈련 과정을 수강하며 건강한 그리스도의 제자로 자라갑니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1-4 섬기는 사람들 -->
+        <div id="intro-4" class="sub-panel">
+          <div class="article-head">
+            <h2>섬기는 사람들</h2>
+            <p>각 영역을 클릭하시면 해당 직분 소개 위치로 바로 이동합니다.</p>
+          </div>
+
+          <div class="staff-anchor-bar">
+            <button class="staff-anchor-btn" onclick="scrollToStaff('staff-senior')">담임목사</button>
+            <span class="staff-sep">·</span>
+            <button class="staff-anchor-btn" onclick="scrollToStaff('staff-pastors')">교역자</button>
+            <span class="staff-sep">·</span>
+            <button class="staff-anchor-btn" onclick="scrollToStaff('staff-staff')">간사</button>
+            <span class="staff-sep">·</span>
+            <button class="staff-anchor-btn" onclick="scrollToStaff('staff-elders')">장로 (시무 · 사역 · 휴무 · 은퇴)</button>
+          </div>
+
+          <div class="article-block" id="staff-senior">
+            <h3 class="block-title">담임목사</h3>
+            <div class="staff-grid-4">
+              <div class="staff-card">
+                <div class="photo-frame" style="aspect-ratio:1/1;"><strong>[채경락 담임목사 실사]</strong></div>
+                <div class="staff-name">채경락 담임목사</div>
+                <div class="staff-role">담임목회 · 말씀과 목양 총괄</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-block" id="staff-pastors">
+            <h3 class="block-title">교역자</h3>
+            <div class="staff-grid-4">
+              <div class="staff-card">
+                <div class="photo-frame" style="aspect-ratio:1/1;"><strong>[심민재 목사 실사]</strong></div>
+                <div class="staff-name">심민재 목사</div>
+                <div class="staff-role">행정 · 장년교구 · 훈련</div>
+              </div>
+              <div class="staff-card">
+                <div class="photo-frame" style="aspect-ratio:1/1;"><strong>[전성안 목사 실사]</strong></div>
+                <div class="staff-name">전성안 목사</div>
+                <div class="staff-role">청년평원 · 선교</div>
+              </div>
+              <div class="staff-card">
+                <div class="photo-frame" style="aspect-ratio:1/1;"><strong>[교역자 실사]</strong></div>
+                <div class="staff-name">임현우 목사</div>
+                <div class="staff-role">다음세대 · 임팩틴(중고등부)</div>
+              </div>
+              <div class="staff-card">
+                <div class="photo-frame" style="aspect-ratio:1/1;"><strong>[교역자 실사]</strong></div>
+                <div class="staff-name">김도현 전도사</div>
+                <div class="staff-role">유년부 · 초등부 · 어와나</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-block" id="staff-staff">
+            <h3 class="block-title">간사</h3>
+            <div class="staff-grid-4">
+              <div class="staff-card">
+                <div class="photo-frame" style="aspect-ratio:1/1;"><strong>[간사 프로필 실사]</strong></div>
+                <div class="staff-name">이은혜 간사</div>
+                <div class="staff-role">교회사무 · 재정 행정</div>
+              </div>
+              <div class="staff-card">
+                <div class="photo-frame" style="aspect-ratio:1/1;"><strong>[간사 프로필 실사]</strong></div>
+                <div class="staff-name">김하늘 간사</div>
+                <div class="staff-role">영아부 · 유아부 · 유치부</div>
+              </div>
+              <div class="staff-card">
+                <div class="photo-frame" style="aspect-ratio:1/1;"><strong>[간사 프로필 실사]</strong></div>
+                <div class="staff-name">박성훈 간사</div>
+                <div class="staff-role">방송 · 미디어 · 시설 관리</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-block prose" id="staff-elders">
+            <h3 class="block-title">장로 (시무 · 사역 · 휴무 · 은퇴)</h3>
+            <p><strong>시무장로 :</strong> 당회원으로 교회 행정과 목양을 함께 섬기는 시무장로 명단 및 프로필 영역</p>
+            <p><strong>사역장로 :</strong> 각 위원회와 사역 현장의 실무를 책임지고 섬기는 사역장로 명단 영역</p>
+            <p><strong>휴무장로 · 은퇴장로 :</strong> 샘물교회 임기제 원칙에 따라 안식과 기도로 공동체를 뒷받침하는 휴무장로 및 원로·은퇴장로님들의 명단 영역</p>
+          </div>
+        </div>
+
+        <!-- 1-5 교회 소식 (15개 목록 출력) -->
+        <div id="intro-5" class="sub-panel">
+          <div class="article-head">
+            <h2>교회 소식</h2>
+            <p>샘물교회의 공지사항과 주보 소식입니다.</p>
+          </div>
+          <table class="ed-table">
+            <thead><tr><th style="width:76px;">구분</th><th>제목</th><th style="width:95px;">작성자</th><th style="width:95px;">날짜</th></tr></thead>
+            <tbody>
+              <tr><td><span class="meta-tag">공지</span></td><td><strong>샘물학교 개교 20주년 감사예배 및 홈커밍데이 안내</strong></td><td>관리자</td><td>26.11.08</td></tr>
+              <tr><td><span class="meta-tag">공지</span></td><td><strong>2026년 가을학기 삶공부(작은목자훈련) 수강 신청 안내</strong></td><td>관리자</td><td>26.11.01</td></tr>
+              <tr><td>1150</td><td>주일예배 및 주차장 이용 안내 (금산주차장 주차 지원)</td><td>관리자</td><td>26.11.08</td></tr>
+              <tr><td>1149</td><td>지역사회봉사부 목요일 반찬 나눔 봉사자 모집</td><td>관리자</td><td>26.11.01</td></tr>
+              <tr><td>1148</td><td>추수감사주일 온 가족 연합예배 및 사랑의 쌀 나눔 안내</td><td>관리자</td><td>26.10.25</td></tr>
+              <tr><td>1147</td><td>중보기도부 릴레이 기도 헌신자 수시 모집 안내</td><td>관리자</td><td>26.10.18</td></tr>
+              <tr><td>1146</td><td>2026년 하반기 유아세례 신청 및 부모교육 일정</td><td>관리자</td><td>26.10.11</td></tr>
+              <tr><td>1145</td><td>샬롬샘 2학기 야외 소풍 및 건강특강 안내</td><td>관리자</td><td>26.10.04</td></tr>
+              <tr><td>1144</td><td>샘물 어린이 작은도서관 신규 도서 입고 안내</td><td>관리자</td><td>26.09.27</td></tr>
+              <tr><td>1143</td><td>청년평원 가을 수련회 및 연합 목장 모임 소식</td><td>관리자</td><td>26.09.20</td></tr>
+              <tr><td>1142</td><td>하반기 복음전도훈련(JUST EE) 12주 과정 개강</td><td>관리자</td><td>26.09.13</td></tr>
+              <tr><td>1141</td><td>마더와이즈 · 파더와이즈 가을학기 수강생 모집</td><td>관리자</td><td>26.09.06</td></tr>
+              <tr><td>1140</td><td>8월 정기 당회 주요 결정 사항 보고</td><td>관리자</td><td>26.08.30</td></tr>
+              <tr><td>1139</td><td>여름 국내 낙도 단기봉사 사역 보고 및 감사</td><td>관리자</td><td>26.08.23</td></tr>
+              <tr><td>1138</td><td>순교기념주일 특별 강연 및 순교자 기념관 관람 안내</td><td>관리자</td><td>26.07.19</td></tr>
+            </tbody>
+          </table>
+          <div class="pagination-bar">
+            <button class="page-num-btn active">1</button>
+            <button class="page-num-btn">2</button>
+            <button class="page-num-btn">3</button>
+            <button class="page-num-btn">4</button>
+            <button class="page-num-btn">5</button>
+          </div>
+        </div>
+
+        <!-- 1-6 샘물 포토 -->
+        <div id="intro-6" class="sub-panel">
+          <div class="article-head">
+            <h2>샘물 포토</h2>
+            <p>예배와 목장, 다음세대와 선교 현장의 기록입니다.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
+            <div><div class="photo-frame" style="margin-bottom:8px;"><strong>[전교인 연합 야외예배 실사]</strong></div><div style="font-weight:700; font-size:0.95rem;">전교인 연합 야외예배</div><span style="font-size:0.82rem; color:var(--ink-sub);">26.10.18</span></div>
+            <div><div class="photo-frame" style="margin-bottom:8px;"><strong>[유아·유치부 성경학교 실사]</strong></div><div style="font-weight:700; font-size:0.95rem;">유아·유치부 성경학교</div><span style="font-size:0.82rem; color:var(--ink-sub);">26.08.15</span></div>
+            <div><div class="photo-frame" style="margin-bottom:8px;"><strong>[여름 국내 단기봉사 실사]</strong></div><div style="font-weight:700; font-size:0.95rem;">여름 국내 단기봉사</div><span style="font-size:0.82rem; color:var(--ink-sub);">26.07.28</span></div>
+          </div>
+        </div>
+
+        <!-- 1-7 교회행정 / 장소신청 / 헌금안내 -->
+        <div id="intro-7" class="sub-panel">
+          <div class="article-head">
+            <h2>교회행정 / 장소신청 / 헌금안내</h2>
+            <p>장소 예약, 온라인 헌금 계좌, 증명서 및 주차스티커 발급 안내입니다.</p>
+          </div>
+          <div class="article-block split-2 prose">
+            <div>
+              <h3 class="block-title">장소신청 안내</h3>
+              <p>교회 내 소그룹실 및 예배실 사용은 <strong>샘물교회 공식 모바일 앱(App)</strong>에서 사용일 3일 전까지 신청하실 수 있습니다.</p>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+                <a href="https://play.google.com/store" target="_blank" class="simple-cta-box">Google Play 앱 다운로드 →</a>
+                <a href="https://www.apple.com/kr/app-store/" target="_blank" class="simple-cta-box">App Store 앱 다운로드 →</a>
+              </div>
+            </div>
+            <div>
+              <h3 class="block-title">증명서 및 주차스티커 발급</h3>
+              <p>교인증명서·세례증명서·기부금영수증(홈택스 연동) 및 차량 등록 스티커를 1층 교회사무실에서 발급해 드립니다.</p>
+              <div style="margin-top:14px;">
+                <a href="tel:031-715-3390" class="simple-cta-box">교회사무실 문의 031-715-3390 →</a>
+              </div>
+            </div>
+          </div>
+          <div class="article-block prose">
+            <h3 class="block-title">온라인 헌금안내 (예금주 : 샘물교회)</h3>
+            <p style="font-size:0.92rem; margin-bottom:14px; padding:12px 16px; background-color:var(--bg-tint); border-left:2px solid var(--brand-teal);">
+              본인 확인을 위해 입금자명에는 성함과 목장을 꼭 기입해주시기 바랍니다.<br>
+              <strong>예) 입금자명 : (김샘물목장명) 또는 (김샘물A십일조)</strong>
+            </p>
+            <table class="ed-table">
+              <thead><tr><th style="width:240px;">헌금 구분</th><th>은행 및 계좌번호</th></tr></thead>
+              <tbody>
+                <tr><td><strong>십일조 / 감사 / 주일 / 절기헌금</strong></td><td>신한은행 100-026-803033 · 국민은행 085-201-212690</td></tr>
+                <tr><td><strong>선교헌금 (선교사/단체)</strong></td><td>신한은행 140-009-857805</td></tr>
+                <tr><td><strong>비전헌금 (건축/시설개선)</strong></td><td>신한은행 140-009-857783</td></tr>
+                <tr><td><strong>구제헌금 / 장애인헌금</strong></td><td>구제: 신한 140-009-857818 · 장애인: 신한 140-009-857821</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 1-8 교회 시설 안내 -->
+        <div id="intro-8" class="sub-panel">
+          <div class="article-head">
+            <h2>교회 시설 안내</h2>
+            <p>지상 5층부터 지하 5층까지, 층별 주요 공간 배치 안내입니다. (건물 층이나 표에 마우스를 올려보세요)</p>
+          </div>
+          <div class="facility-wrap">
+            <div class="building-diagram" aria-label="샘물교회 층별 단면도">
+              <div class="bldg-roof">SAEMMUL CHURCH</div>
+              <div class="bldg-floor" data-floor="5F" onmouseenter="hoverFloor('5F')" onmouseleave="clearFloor()"><strong>5F</strong><span>교역자실·유아·유치부</span></div>
+              <div class="bldg-floor" data-floor="4F" onmouseenter="hoverFloor('4F')" onmouseleave="clearFloor()"><strong>4F</strong><span>임팩틴·유년부·소그룹</span></div>
+              <div class="bldg-floor" data-floor="3F" onmouseenter="hoverFloor('3F')" onmouseleave="clearFloor()"><strong>3F</strong><span>샘물학교·초등부</span></div>
+              <div class="bldg-floor" data-floor="2F" onmouseenter="hoverFloor('2F')" onmouseleave="clearFloor()"><strong>2F</strong><span>본당 대예배실·새가족</span></div>
+              <div class="bldg-floor ground" data-floor="1F" onmouseenter="hoverFloor('1F')" onmouseleave="clearFloor()"><strong>1F</strong><span>순교자기념관·도서관·카페</span></div>
+              <div class="bldg-floor" data-floor="B1" onmouseenter="hoverFloor('B1')" onmouseleave="clearFloor()"><strong>B1</strong><span>식당·영아부·찬양대</span></div>
+              <div class="bldg-floor" data-floor="B2-5" onmouseenter="hoverFloor('B2-5')" onmouseleave="clearFloor()"><strong>B2~5</strong><span>지하주차장·기계실</span></div>
+            </div>
+
+            <table class="ed-table">
+              <thead><tr><th style="width:110px;">층별</th><th>주요 공간</th></tr></thead>
+              <tbody>
+                <tr class="fac-row" data-floor="5F" onmouseenter="hoverFloor('5F')" onmouseleave="clearFloor()"><td><strong>5층</strong></td><td>교역자실 · 상담실 · 미디어실 · 유아부실(527호) · 유치부/어와나실(505호) · 말아톤복지재단(주간보호센터) · (사)선한울타리</td></tr>
+                <tr class="fac-row" data-floor="4F" onmouseenter="hoverFloor('4F')" onmouseleave="clearFloor()"><td><strong>4층</strong></td><td>중고등부 임팩틴 예배실(413호) · 소그룹실 · 유년부실(401호)</td></tr>
+                <tr class="fac-row" data-floor="3F" onmouseenter="hoverFloor('3F')" onmouseleave="clearFloor()"><td><strong>3층</strong></td><td><strong>샘물학교</strong> · 초등부 예배실(309호) · 행정실</td></tr>
+                <tr class="fac-row" data-floor="2F" onmouseenter="hoverFloor('2F')" onmouseleave="clearFloor()"><td><strong>2층 (MAIN)</strong></td><td><strong>본당 대예배실</strong> · 새가족실 (본당 앞)</td></tr>
+                <tr class="fac-row" data-floor="1F" onmouseenter="hoverFloor('1F')" onmouseleave="clearFloor()"><td><strong>1층</strong></td><td><strong>순교자 기념관</strong> · 침묵기도실 · 중보기도실 · 샬롬샘 쉼터 · <strong>샘물 어린이 작은도서관</strong> · 사랑부/에바다부 목장실(103호) · 교회사무실 · 올(All) 카페</td></tr>
+                <tr class="fac-row" data-floor="B1" onmouseenter="hoverFloor('B1')" onmouseleave="clearFloor()"><td><strong>B1층</strong></td><td>식당 · 자모실 · 찬양대 연습실 · 영아부실(B101호)</td></tr>
+                <tr class="fac-row" data-floor="B2-5" onmouseenter="hoverFloor('B2-5')" onmouseleave="clearFloor()"><td><strong>B2~B5층</strong></td><td>지하 주차장 (B2~4층) · 기계실 (B5층)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 1-9 오시는 길 -->
+        <div id="intro-9" class="sub-panel">
+          <div class="article-head">
+            <h2>오시는 길</h2>
+            <p>경기도 성남시 분당구 내정로 17번길 8 (정자동) · 대표전화 031-715-3390</p>
+          </div>
+          <div class="article-block">
+            <div class="photo-frame wide" style="margin-bottom:24px;">
+              <strong>[지도 연동 영역 · 경기도 성남시 분당구 내정로 17번길 8]</strong>
+              <span>네이버 지도 / 카카오맵 임베드 영역</span>
+            </div>
+            <div class="split-2 prose">
+              <div style="border-top:1px solid var(--line-hair); padding-top:14px;">
+                <span class="meta-tag">위치 및 주차 안내</span>
+                <h4 style="margin:6px 0;">정자동 탄천초등학교 맞은편 분당타운 (도보 3분)</h4>
+                <p>교회 지하 주차장(B2~B4층)을 이용하실 수 있으며, 주일에는 인근 금산주차장 주차를 지원합니다.</p>
+              </div>
+              <div style="border-top:1px solid var(--line-hair); padding-top:14px;">
+                <span class="meta-tag">정자역 하차 시</span>
+                <h4 style="margin:6px 0;">정자역 1번 출구 → 마을버스 환승</h4>
+                <p>109번 승차 후 파크뷰APT 608동 앞에서 하차하시거나, 111번 승차 후 한솔프라자 앞에서 하차하시면 됩니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       [CATEGORY 2] 예배와 말씀 (5개 메뉴)
+       ========================================================= -->
+  <section id="view-worship" class="view-section">
+    <div class="sub-masthead">
+      <div class="wrap">
+        <span>WORSHIP &amp; SERMONS</span>
+        <h1>예배와 말씀</h1>
+      </div>
+    </div>
+
+    <div class="wrap sub-layout">
+      <aside class="side-index">
+        <div class="side-index-head">예배와 말씀</div>
+        <ul class="side-nav-list">
+          <li><button class="side-link active" data-panel="worship-1" onclick="switchPanel('worship', 'worship-1')">실시간 Live 및 안내</button></li>
+          <li><button class="side-link" data-panel="worship-2" onclick="switchPanel('worship', 'worship-2')">주일예배</button></li>
+          <li><button class="side-link" data-panel="worship-3" onclick="switchPanel('worship', 'worship-3')">수요기도회</button></li>
+          <li><button class="side-link" data-panel="worship-4" onclick="switchPanel('worship', 'worship-4')">새벽기도회</button></li>
+          <li><button class="side-link" data-panel="worship-5" onclick="switchPanel('worship', 'worship-5')">청년예배 [4부]</button></li>
+        </ul>
+      </aside>
+
+      <div>
+        <div id="worship-1" class="sub-panel active">
+          <div class="article-head">
+            <h2>실시간 Live 및 예배 안내</h2>
+            <p>주일예배(2·3부) 및 수요·새벽기도회 실시간 방송과 전체 예배 시간표입니다.</p>
+          </div>
+          <div class="article-block">
+            <div class="photo-frame wide" style="background-color:var(--ink-navy); color:var(--bg-base);">
+              <strong>[유튜브 공식 채널 실시간 Live 플레이어 영역]</strong>
+              <span>예배 시작 10분 전부터 실시간 송출됩니다.</span>
+            </div>
+          </div>
+          <div class="article-block">
+            <h3 class="block-title">전체 예배 시간표</h3>
+            <table class="ed-table">
+              <thead><tr><th>예배명</th><th>시간</th><th>장소</th><th>비고</th></tr></thead>
+              <tbody>
+                <tr><td><strong>주일 1부 예배</strong></td><td>주일 오전 08:20</td><td>2층 본당</td><td></td></tr>
+                <tr><td><strong>주일 2부 예배</strong></td><td>주일 오전 11:00</td><td>2층 본당</td><td>유튜브 Live · 예배 후 새가족실 안내</td></tr>
+                <tr><td><strong>주일 3부 예배</strong></td><td>주일 오후 01:30</td><td>2층 본당</td><td>유튜브 Live · 수어예배 (14:00)</td></tr>
+                <tr><td><strong>청년 4부 예배</strong></td><td>주일 오후 03:30</td><td>2층 본당</td><td>청년예배 · 청년평원 공동체</td></tr>
+                <tr><td><strong>수요기도회</strong></td><td>수요일 오전 10:30</td><td>2층 본당</td><td>유튜브 Live · 찬양과 말씀 · 합심기도</td></tr>
+                <tr><td><strong>새벽기도회</strong></td><td>월~토 오전 05:30</td><td>2층 본당 / 영아부실</td><td>유튜브 Live</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="worship-2" class="sub-panel">
+          <div class="article-head"><h2>주일예배 말씀</h2><p>주일 1·2·3부 예배 설교 영상 다시보기입니다.</p></div>
+          <div class="article-block">
+            <div class="photo-frame wide" style="background-color:var(--ink-navy); color:var(--bg-base); margin-bottom:16px;"><strong>[주일예배 최신 설교 영상 플레이어]</strong></div>
+            <span class="meta-tag">채경락 담임목사 · 요한복음 4:13~14</span>
+            <h3 class="block-title" style="margin-top:6px;">내 안에 고인 행복이 흘러갈 때</h3>
+          </div>
+          <table class="ed-table">
+            <thead><tr><th style="width:70px;">번호</th><th style="width:110px;">설교일</th><th>설교 제목</th><th>본문</th><th>설교자</th></tr></thead>
+            <tbody id="sermonList-sunday"></tbody>
+          </table>
+          <div class="pagination-bar" id="sermonPage-sunday"></div>
+        </div>
+
+        <div id="worship-3" class="sub-panel">
+          <div class="article-head"><h2>수요기도회 말씀</h2><p>매주 수요일 오전 10:30 · 본당 2층 대예배실</p></div>
+          <div class="article-block">
+            <div class="photo-frame wide" style="background-color:var(--ink-navy); color:var(--bg-base); margin-bottom:16px;"><strong>[수요기도회 최신 말씀 영상 플레이어]</strong></div>
+            <span class="meta-tag">채경락 담임목사 · 시편 42:1~5</span>
+            <h3 class="block-title" style="margin-top:6px;">기도의 자리에 부어주시는 은혜의 샘</h3>
+          </div>
+          <table class="ed-table">
+            <thead><tr><th style="width:70px;">번호</th><th style="width:110px;">설교일</th><th>설교 제목</th><th>본문</th><th>설교자</th></tr></thead>
+            <tbody id="sermonList-wed"></tbody>
+          </table>
+          <div class="pagination-bar" id="sermonPage-wed"></div>
+        </div>
+
+        <div id="worship-4" class="sub-panel">
+          <div class="article-head"><h2>새벽기도회 말씀</h2><p>월~토 오전 5:30 · 본당 2층 및 유튜브 실시간 중계</p></div>
+          <div class="article-block">
+            <div class="photo-frame wide" style="background-color:var(--ink-navy); color:var(--bg-base); margin-bottom:16px;"><strong>[새벽기도회 최신 말씀 영상 플레이어]</strong></div>
+            <span class="meta-tag">채경락 담임목사 · 열왕기상 19:9~14</span>
+            <h3 class="block-title" style="margin-top:6px;">새벽을 깨우는 하나님의 세미한 음성</h3>
+          </div>
+          <table class="ed-table">
+            <thead><tr><th style="width:70px;">번호</th><th style="width:110px;">설교일</th><th>설교 제목</th><th>본문</th><th>설교자</th></tr></thead>
+            <tbody id="sermonList-dawn"></tbody>
+          </table>
+          <div class="pagination-bar" id="sermonPage-dawn"></div>
+        </div>
+
+        <div id="worship-5" class="sub-panel">
+          <div class="article-head"><h2>청년예배 [4부] 말씀</h2><p>주일 오후 3:30 · 청년평원 공동체 예배</p></div>
+          <div class="article-block">
+            <div class="photo-frame wide" style="background-color:var(--ink-navy); color:var(--bg-base); margin-bottom:16px;"><strong>[청년예배 4부 최신 설교 영상 플레이어]</strong></div>
+            <span class="meta-tag">전성안 목사 · 시편 119:9~16</span>
+            <h3 class="block-title" style="margin-top:6px;">일상의 갈증을 은혜로 채우는 청년의 길</h3>
+          </div>
+          <table class="ed-table">
+            <thead><tr><th style="width:70px;">번호</th><th style="width:110px;">설교일</th><th>설교 제목</th><th>본문</th><th>설교자</th></tr></thead>
+            <tbody id="sermonList-youth"></tbody>
+          </table>
+          <div class="pagination-bar" id="sermonPage-youth"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       [CATEGORY 3] 가정교회와 훈련 (5개 메뉴)
+       ========================================================= -->
+  <section id="view-house" class="view-section">
+    <div class="sub-masthead">
+      <div class="wrap">
+        <span>HOUSE CHURCH &amp; DISCIPLESHIP</span>
+        <h1>가정교회와 훈련</h1>
+      </div>
+    </div>
+
+    <div class="wrap sub-layout">
+      <aside class="side-index">
+        <div class="side-index-head">가정교회/훈련</div>
+        <ul class="side-nav-list">
+          <li><button class="side-link active" data-panel="house-1" onclick="switchPanel('house', 'house-1')">가정교회(목장)</button></li>
+          <li><button class="side-link" data-panel="house-2" onclick="switchPanel('house', 'house-2')">청년평원</button></li>
+          <li><button class="side-link" data-panel="house-3" onclick="switchPanel('house', 'house-3')">샬롬샘</button></li>
+          <li><button class="side-link" data-panel="house-4" onclick="switchPanel('house', 'house-4')">제자훈련 및 양육</button></li>
+          <li><button class="side-link" data-panel="house-5" onclick="switchPanel('house', 'house-5')">샘물 경조사</button></li>
+        </ul>
+      </aside>
+
+      <div>
+        <div id="house-1" class="sub-panel active">
+          <div class="article-head">
+            <h2>가정교회 (목장)</h2>
+            <p>6~12명이 가정에서 매주 모여 예배·교육·친교·전도·선교를 실천하는 신약 교회 공동체입니다.</p>
+          </div>
+
+          <div class="article-block prose">
+            <h3 class="block-title">신약 교회의 회복을 향한 다섯 가지 가치</h3>
+            <p>
+              샘물교회의 가정교회(목장)는 교실에서의 지식 전달을 넘어, 삶의 현장에서 식탁과 기도를 나누며 제자를 세우는 작은 교회입니다. 모든 목장은 믿지 않는 이웃을 주님께로 인도하는 <strong>영혼구원</strong>을 최우선 목적으로 삼으며, <strong>현장 제자화</strong>와 <strong>삶과 행동</strong>을 통해 배운 말씀을 일상에서 실습합니다.
+            </p>
+            <p>
+              에베소서 4장 11~12절 말씀처럼 목회자는 말씀과 기도에 전념하고 평신도 목자가 전도·심방·상담 등 목양 사역을 직접 감당하는 <strong>사역 분담</strong>을 실천합니다. 이를 위해 6~12명의 성도들이 <strong>반드시 가정에서 모이는 소그룹</strong>을 이루며, 목자는 교역자의 보조가 아닌 한 작은 교회를 책임지는 동역자로 섬깁니다.
+            </p>
+          </div>
+
+          <div class="article-block">
+            <h3 class="block-title">목장 모임의 흐름</h3>
+            <ul class="numbered-flow-list" style="margin-bottom:20px;">
+              <li><strong>① 애찬 :</strong> 간식이 아닌 식사(1식 3찬 이내)로 모임을 시작합니다. 목자가 준비하되 목원들이 순서대로 돌아가며 담당합니다.</li>
+              <li><strong>② 올리브 블레싱 :</strong> 자녀들이 기도제목을 나누고 어른들이 무릎에 앉혀 축복기도한 후 어린이목장으로 이동합니다.</li>
+              <li><strong>③ 찬양 :</strong> 찬양교사의 인도로 미리 선곡된 찬양을 함께 부릅니다.</li>
+              <li><strong>④ 교회 소식 :</strong> 주보 소식을 공유하고 목장이 후원하는 선교사 소식을 나눕니다.</li>
+              <li><strong>⑤ 삶 나눔 (핵심) :</strong> 주일 설교 기반 질문·토의 또는 한 주간의 일상과 감사제목·간증을 진솔하게 나눕니다. (1~2시간 이내)</li>
+              <li><strong>⑥ 중보기도 :</strong> 기도제목을 나눈 후 약 15분간 함께 중보기도합니다. (VIP 참석 시 VIP 중심으로 진행)</li>
+              <li><strong>⑦ 선교와 도전 :</strong> VIP 및 후원 선교사 근황을 나누고 기도 편지를 낭독하며 함께 기도합니다.</li>
+            </ul>
+            <p style="font-size:0.9rem; color:var(--ink-sub); line-height:1.8;">
+              모임 후에는 다음 주 목요일까지 목장일지를 작성하며, 등산·영화·운동 등 친교 중심의 특별 모임은 월 1회를 넘지 않도록 절제합니다. 또한 목자들을 세우기 위해 월 1회 이상 <strong>초원 모임(목자들의 목장)</strong>과 평원 소속 목장들을 돌보는 <strong>평원 모임</strong>을 함께 운영합니다.
+            </p>
+          </div>
+        </div>
+
+        <div id="house-2" class="sub-panel">
+          <div class="article-head"><h2>청년평원</h2><p>대학·청년 세대가 가정교회의 정신을 따라 삶과 소명을 나누는 공동체입니다.</p></div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[청년부 공동체 현장 실사]</strong></div>
+            <div>
+              <span class="meta-tag">대학부 및 20대 초반 청년</span>
+              <h3 class="block-title" style="margin-top:6px;">청년부</h3>
+              <p>대학 진학과 사회의 첫걸음을 내딛는 청년들이 모여 말씀 안에서 정체성을 발견하고 또래 목장 식구들과 진솔한 교제를 나눕니다. 매주 주일 오후 3시 30분 청년예배 후 청년 목장별 모임을 이어갑니다.</p>
+            </div>
+          </div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[청년회 공동체 현장 실사]</strong></div>
+            <div>
+              <span class="meta-tag">20대 중반 이후 청년 및 직장인</span>
+              <h3 class="block-title" style="margin-top:6px;">청년회</h3>
+              <p>취업과 커리어, 결혼 등 삶의 전환점에 선 직장인·청년들이 서로의 기도를 나누고 일터 속에서 신앙을 실천합니다. 주일 오후 3시 30분 청년예배와 청년평원 목장 교제를 통해 동역합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="house-3" class="sub-panel">
+          <div class="article-head"><h2>샬롬샘</h2><p>만 65세 이상 시니어 성도님들이 말씀과 교제로 동행하는 목장 공동체입니다.</p></div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[샬롬샘 어르신 모임 실사]</strong></div>
+            <div>
+              <p>샬롬샘은 <strong>만 65세 이상</strong> 샘물교회 시니어 성도님들의 목장 공동체입니다. 말씀 안에서 서로를 격려하며 노년에 겪는 삶의 현실적인 문제들을 함께 나누고 기도합니다.</p>
+              <p>매년 1학기(3~6월)와 2학기(9~11월) <strong>매주 목요일 오전 10시 본당 2층 대예배실</strong>에서 모이며, 예배와 특강, 건강체조, 목장모임, 점심식사 순서로 진행됩니다. 학기 중 영화 상영과 노래교실, 야외 소풍 등 다채로운 프로그램도 함께 누립니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="house-4" class="sub-panel">
+          <div class="article-head"><h2>제자훈련 및 양육 (삶공부 · 작은목자훈련)</h2><p>지식 전달을 넘어 삶 속에서 말씀을 실습하는 단계별 훈련 과정입니다.</p></div>
+          <div class="article-block">
+            <h3 class="block-title">필수과정 5단계 성장 여정</h3>
+            <div class="essay-list">
+              <div class="essay-item">
+                <h4>01. 새가족 과정 (기초)</h4>
+                <p>샘물교회에 처음 등록한 성도가 교회 생활의 기초를 다지고 공동체에 자연스럽게 뿌리내리도록 돕는 입문 과정입니다.</p>
+              </div>
+              <div class="essay-item">
+                <h4>02. 생명의 삶 (11주)</h4>
+                <p>복음의 핵심 진리를 체계적으로 배우고, 그리스도인으로서의 분명한 정체성과 구원의 감격을 확립합니다.</p>
+              </div>
+              <div class="essay-item">
+                <h4>03. 새로운 삶 (11주)</h4>
+                <p>세상의 가치관을 내려놓고 성경적 세계관으로 삶의 우선순위와 생각의 틀을 새롭게 재정립합니다.</p>
+              </div>
+              <div class="essay-item">
+                <h4>04. 경건의 삶 (13주)</h4>
+                <p>기도와 말씀 묵상, 예배와 섬김의 훈련을 통해 하나님과 깊이 동행하는 경건의 습관을 세웁니다.</p>
+              </div>
+              <div class="essay-item">
+                <h4>05. 하나님을 경험하는 삶 (13주)</h4>
+                <p>일상 속에서 일하시는 하나님의 음성을 분별하고 순종하며, 작은목자로서 영혼을 섬길 수 있도록 무장합니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-block prose">
+            <h3 class="block-title">선택과정 및 세대별 훈련</h3>
+            <p>
+              필수과정 이후에는 <strong>말씀의 삶 · 중보기도의 삶 · 목자의 삶</strong> 심화 과정을 선택해 수강할 수 있습니다. 또한 모든 성도를 대상으로 12주간 진행되는 <strong>복음전도훈련</strong>(JUST EE 및 시니어 전도폭발 현장 실습, <a href="https://eekorea.org/" target="_blank" style="color:var(--brand-teal);">eekorea.org</a>)과 여성을 위한 10주 과정 <strong>마더와이즈</strong>(목요일 10:00~12:00, 본당 413호), 남성을 위한 10주 과정 <strong>파더와이즈</strong>(수요일 20:00~22:00, 본당 309호)가 정기적으로 열립니다.
+            </p>
+          </div>
+        </div>
+
+        <div id="house-5" class="sub-panel">
+          <div class="article-head"><h2>샘물 경조사</h2><p>기쁨과 슬픔을 함께 나누는 목장 가족들의 경조사 소식입니다.</p></div>
+          <table class="ed-table">
+            <thead><tr><th style="width:70px;">번호</th><th style="width:85px;">구분</th><th>제목</th><th style="width:95px;">날짜</th></tr></thead>
+            <tbody id="familyEventBody"></tbody>
+          </table>
+          <div class="pagination-bar" id="familyEventPages"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       [CATEGORY 4] 다음세대 (5개 메뉴)
+       ========================================================= -->
+  <section id="view-next" class="view-section">
+    <div class="sub-masthead">
+      <div class="wrap">
+        <span>NEXT GENERATION</span>
+        <h1>다음세대</h1>
+      </div>
+    </div>
+
+    <div class="wrap sub-layout">
+      <aside class="side-index">
+        <div class="side-index-head">다음세대</div>
+        <ul class="side-nav-list">
+          <li><button class="side-link active" data-panel="next-1" onclick="switchPanel('next', 'next-1')">주일학교</button></li>
+          <li><button class="side-link" data-panel="next-2" onclick="switchPanel('next', 'next-2')">주일학교 - 게시판</button></li>
+          <li><button class="side-link" data-panel="next-3" onclick="switchPanel('next', 'next-3')">샘물플레싱</button></li>
+          <li><button class="side-link" data-panel="next-4" onclick="switchPanel('next', 'next-4')">샘물학교</button></li>
+          <li><button class="side-link" data-panel="next-5" onclick="switchPanel('next', 'next-5')">샘물 어린이 작은도서관</button></li>
+        </ul>
+      </aside>
+
+      <div>
+        <div id="next-1" class="sub-panel active">
+          <div class="article-head"><h2>주일학교</h2><p>영아부부터 청소년 임팩틴까지, 각 연령의 눈높이에 맞춘 예배 공동체입니다.</p></div>
+
+          <div class="dept-row">
+            <div class="photo-frame"><strong>[영아부 예배 실사 · 4:3]</strong></div>
+            <div>
+              <h4>영아부 (0~3세 아기와 부모)</h4>
+              <p>부모님과 함께 기쁨으로 찬양드리고 눈은 반짝, 귀는 쫑긋 말씀 들으며 키와 지혜가 자라가는 영아부입니다.</p>
+              <div class="dept-meta">주일 오전 12:00 · 본당 B101호</div>
+            </div>
+          </div>
+
+          <div class="dept-row">
+            <div class="photo-frame"><strong>[유아부 예배 실사 · 4:3]</strong></div>
+            <div>
+              <h4>유아부 (4~5세)</h4>
+              <p>말과 마음이 자라나는 시기! 하나님 말씀을 배우고 자신의 입술로 믿음을 고백하는 행복한 예배 공동체입니다.</p>
+              <div class="dept-meta">주일 오전 10:00(2부) / 오후 12:00(3부) · 본당 527호</div>
+            </div>
+          </div>
+
+          <div class="dept-row">
+            <div class="photo-frame"><strong>[유치부 예배 실사 · 4:3]</strong></div>
+            <div>
+              <h4>유치부 (6~7세)</h4>
+              <p>하나님 사랑, 이웃 사랑을 실천하는 유치부! 러빗(Luvit)! 우리는 사랑을 실천할래요!</p>
+              <div class="dept-meta">주일 오전 10:00(2부) / 오후 12:00(3부) · 본당 505호</div>
+            </div>
+          </div>
+
+          <div class="dept-row">
+            <div class="photo-frame"><strong>[유년부 예배 실사 · 4:3]</strong></div>
+            <div>
+              <h4>유년부 (초등학교 1~3학년)</h4>
+              <p>열방에 복음을 퍼트리는 민들레 유년부! 예수님처럼 말하고 예수님처럼 생각하길 꿈꿉니다.</p>
+              <div class="dept-meta">주일 오전 10:00(2부) / 오후 12:00(3부) · 본당 401호</div>
+            </div>
+          </div>
+
+          <div class="dept-row">
+            <div class="photo-frame"><strong>[초등부 예배 실사 · 4:3]</strong></div>
+            <div>
+              <h4>초등부 (초등학교 4~6학년)</h4>
+              <p>하나님이 행하신 일들을 배우는 기쁨을 누리며 말씀을 마음에 품고 삶 속에서 실천하는 믿음의 자녀 공동체입니다.</p>
+              <div class="dept-meta">주일 오전 10:00(2부) / 오후 12:00(3부) · 본당 309호</div>
+            </div>
+          </div>
+
+          <div class="dept-row">
+            <div class="photo-frame"><strong>[어와나 활동 실사 · 4:3]</strong></div>
+            <div>
+              <h4>어와나 Awana (7세 ~ 초등학교 6학년)</h4>
+              <p>성경 암송과 역동적인 게임을 통해 다음 세대를 예수 그리스도의 신실한 일꾼으로 키워내는 복음 중심 어린이 제자훈련입니다.</p>
+              <div class="dept-meta">주일 오후 2:00 ~ 4:00 · 본당 505호</div>
+            </div>
+          </div>
+
+          <div class="dept-row" style="border-bottom:none;">
+            <div class="photo-frame"><strong>[임팩틴 예배 실사 · 4:3]</strong></div>
+            <div>
+              <h4>임팩틴 IMPACTEEN (중등부 · 고등부)</h4>
+              <p>십대의 오늘을 믿음으로 채우고, 내일의 세상에 선한 영향력을 끼치는 청소년 공동체입니다.</p>
+              <div class="dept-meta">중등부(중1~3) 주일 오전 10:00 · 고등부(고1~3) 주일 오후 12:00 · 본당 413호</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="next-2" class="sub-panel">
+          <div class="article-head"><h2>다음세대 소식 (주일학교 게시판)</h2><p>부서별 공지사항과 캠프·성경학교 소식입니다.</p></div>
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="filterNextNews('ALL', this)">전체</button>
+            <button class="tab-btn" onclick="filterNextNews('유아부', this)">유아부</button>
+            <button class="tab-btn" onclick="filterNextNews('초등부', this)">초등부</button>
+            <button class="tab-btn" onclick="filterNextNews('중고등부(임팩틴)', this)">중고등부(임팩틴)</button>
+            <button class="tab-btn" onclick="filterNextNews('어와나(Awana)', this)">어와나(Awana)</button>
+            <button class="tab-btn" onclick="filterNextNews('샘물플레싱', this)">샘물플레싱</button>
+            <button class="tab-btn" onclick="filterNextNews('샘물학교', this)">샘물학교</button>
+          </div>
+          <table class="ed-table" id="nextNewsTable">
+            <thead><tr><th style="width:130px;">구분</th><th>제목</th><th style="width:100px;">날짜</th></tr></thead>
+            <tbody>
+              <tr data-dept="샘물학교"><td><span class="meta-tag">샘물학교</span></td><td><strong>샘물학교 개교 20주년 감사예배 및 홈커밍데이</strong></td><td>26.10.25</td></tr>
+              <tr data-dept="샘물플레싱"><td><span class="meta-tag">샘물플레싱</span></td><td><strong>2026년 하반기 샘물플레싱 스티커 북 1,000개 달성 가정 시상 안내</strong></td><td>26.10.11</td></tr>
+              <tr data-dept="유아부"><td><span class="meta-tag">유아부</span></td><td><strong>샘물유아학교 Open Day 초대</strong></td><td>26.05.03</td></tr>
+              <tr data-dept="어와나(Awana)"><td><span class="meta-tag">어와나</span></td><td>‘옥상 위에서 펼쳐지는 믿음의 질주!’</td><td>26.04.14</td></tr>
+              <tr data-dept="샘물학교"><td>샘물학교</td><td>2027학년도 신편입생 모집 안내</td><td>26.09.23</td></tr>
+              <tr data-dept="중고등부(임팩틴)"><td>임팩틴</td><td>임팩틴 겨울캠프 안내</td><td>26.01.04</td></tr>
+              <tr data-dept="초등부"><td>초등부</td><td>고신찬양제 샘물교회 워십특별출연 (동영상)</td><td>25.12.07</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="next-3" class="sub-panel">
+          <div class="article-head">
+            <h2>샘물플레싱 (Plessing)</h2>
+            <p>‘플러스(Plus)’와 ‘블레싱(Blessing)’을 합한 예수님이 함께 하시는 축복의 가정예배 프로그램입니다.</p>
+          </div>
+
+          <div class="article-block prose">
+            <h3 class="block-title">샘물플레싱이란 무엇인가요?</h3>
+            <p>
+              <strong>샘물플레싱(Plessing)</strong>은 샘물 성도들이 각 가정에서 드리는 가정예배를 일컫는 말로, ‘더한다’는 의미의 <strong>플러스(Plus)</strong>와 ‘축복’이라는 의미의 <strong>블레싱(Blessing)</strong>을 합한 이름입니다. “두세 사람이 내 이름으로 모인 곳에는 나도 그들 중에 있느니라”(마 18:20)라는 말씀처럼, 온 가족이 예수님의 이름으로 모일 때 그 가운데 예수님께서 함께 하신다(Plus One)는 약속을 담고 있습니다.
+            </p>
+            <p>
+              가정예배를 드린 후에는 자녀가 소속된 주일학교 부서에서 받은 ‘스티커 북’에 예배에 참석한 인원수만큼 스티커를 붙입니다. 4인 가족이 함께 예배했다면 4개를 붙이고, 조부모님이나 친척이 함께했다면 그 수만큼 더합니다. 100개 단위로 스티커 북을 완성하면 부서에서 시상하며, 1,000개·3,000개·5,000개를 모으면 교회에서 공예배 시간에 공적으로 시상합니다.
+            </p>
+            <p>
+              또한 가정 안에서 부모(특히 아버지)는 하나님께서 부여하신 영적 제사장의 권위로 자녀의 머리 위에 손을 얹거나 품에 안으며 축복할 특권과 책임이 있습니다. 성경에서 샘물이 생명과 회복, 예수님이 주시는 영원한 만족을 뜻하듯, 샘물플레싱을 드리는 모든 가정에 참된 회복과 세상이 줄 수 없는 평안이 흐르기를 소망합니다.
+            </p>
+          </div>
+
+          <div class="article-block prose">
+            <h3 class="block-title">왜 가정예배를 드려야 할까요?</h3>
+            <p>
+              가정예배는 가정을 신앙교육의 장으로 세우고, 부모의 따뜻한 손길과 목소리로 자녀에게 평생 잊지 못할 믿음의 유산을 물려주기 위함입니다(전 12:13, 민 14:28). 부모의 일방적인 훈계나 잔소리 대신 함께 말씀을 읽고 서로의 생각을 경청할 때 부모와 자녀는 깊이 소통하게 됩니다. 무엇보다 신명기 6장 4~9절 말씀처럼 자녀에게 하나님의 말씀을 부지런히 가르치는 일은 ‘하면 좋은’ 선택이 아니라 하나님께서 우리에게 주신 소중한 명령입니다.
+            </p>
+          </div>
+
+          <div class="article-block">
+            <h3 class="block-title">가정예배 다섯 가지 순서</h3>
+            <table class="ed-table">
+              <thead><tr><th style="width:150px;">순서</th><th>진행 방법</th></tr></thead>
+              <tbody>
+                <tr><td><strong>① 사랑의 인사</strong></td><td>서로의 눈을 보며 ‘사랑합니다’, ‘축복합니다’, ‘넌 소중해’, ‘감사해요’ 등의 따뜻한 인사를 전하며 서운한 감정을 먼저 해소합니다.</td></tr>
+                <tr><td><strong>② 즐거운 찬양</strong></td><td>온 가족이 함께 아는 찬양이나 서로를 축복하는 찬양 1~2곡을 부릅니다. 자녀가 좋아하는 찬양을 부모님이 함께 배워보는 것도 좋습니다.</td></tr>
+                <tr><td><strong>③ 생명의 말씀</strong></td><td>가족 대표 혹은 모든 가족이 성경 또는 이야기 성경을 함께 읽습니다. <strong>단, 설교는 하지 않습니다.</strong></td></tr>
+                <tr><td><strong>④ 기쁨의 나눔</strong></td><td>성경을 읽고 난 후 느낀 점이나 감정을 편하게 나눕니다. 익숙해지면 일상 속 신앙 고민이나 기도제목을 함께 나눕니다.</td></tr>
+                <tr><td><strong>⑤ 하늘의 축복</strong></td><td>부모님이 자녀에게 손을 얹거나 안아주며 이름을 불러 기도합니다. 아래 축복기도 예시문을 그대로 읽으셔도 좋습니다.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="article-block">
+            <h3 class="block-title">자녀를 위한 축복기도 예시 (00에 자녀 이름을 넣어 기도하세요)</h3>
+            <div class="tab-bar">
+              <button class="tab-btn active" onclick="switchPrayer(event, 'pr-1')">기도문 예1</button>
+              <button class="tab-btn" onclick="switchPrayer(event, 'pr-2')">기도문 예2</button>
+              <button class="tab-btn" onclick="switchPrayer(event, 'pr-3')">기도문 예3</button>
+              <button class="tab-btn" onclick="switchPrayer(event, 'pr-4')">기도문 예4</button>
+            </div>
+            <div id="pr-1" class="prayer-item prose">
+              <p>“사랑하는 자여, 네 영혼이 잘됨 같이 네가 범사에 잘되고 강건하기를 내가 간구하노라.” 하나님, 우리 가정 가운데 <strong>00</strong>를 보내주심을 감사합니다. 하나님께서 우리 사랑하는 자녀 <strong>00</strong>와 함께 하시고, <strong>00</strong>의 영혼이 잘되게 하시며, <strong>00</strong>의 범사가 잘되고 강건하기를 기도합니다. 하나님께서 저의 아버지, 친구, 목자가 되어 주셨던 것처럼 그렇게 <strong>00</strong>의 아버지, 친구, 목자가 되어 주십시오. 예수님의 이름으로 기도합니다. 아멘.</p>
+            </div>
+            <div id="pr-2" class="prayer-item prose" style="display:none;">
+              <p>“소망의 하나님이 모든 기쁨과 평강을 믿음 안에서 너희에게 충만하게 하사 성령의 능력으로 소망이 넘치게 하시기를 원하노라.” 하나님, 우리 가정과 늘 함께 해 주심을 감사드립니다. 아픔과 절망과 눈물이 <strong>00</strong>를 사로잡는 것이 아니라 하나님의 기쁨과 평강이 사랑하는 자녀 <strong>00</strong>에게 충만하길 소망합니다. 늘 하나님 안에 거하며 믿음의 반석 위에 튼튼히 서게 하시고 악한 영의 세력들이 <strong>00</strong>의 삶을 흔들지 못하도록 지켜 주옵소서. 예수님의 이름으로 기도합니다. 아멘.</p>
+            </div>
+            <div id="pr-3" class="prayer-item prose" style="display:none;">
+              <p>“평강의 하나님이 친히 너희를 온전히 거룩하게 하시고 또 너희의 온 영과 혼과 몸이 우리 주 예수 그리스도께서 강림하실 때에 흠 없게 보전되기를 원하노라.” 하나님, 사랑하는 자녀 <strong>00</strong>가 주님의 진리의 말씀을 깨닫고 삶 속에서 풍성히 누리길 소망합니다. 환경과 사람을 바라보며 패배적인 삶에 매이지 않게 하시고, 주님의 자녀로서 승리하는 <strong>00</strong>가 되게 하여 주옵소서. 예수님 이름으로 기도합니다. 아멘.</p>
+            </div>
+            <div id="pr-4" class="prayer-item prose" style="display:none;">
+              <p>“주께서 내게 복을 주시려거든 나의 지역을 넓히시고 주의 손으로 나를 도우사 나로 환난을 벗어나 내게 근심이 없게 하옵소서.” 하나님, 이 야베스의 기도처럼 사랑하는 자녀 <strong>00</strong>가 하나님의 도우심을 경험하며 주님 주시는 평안과 안전을 누리게 하여 주옵소서. 하늘의 신령한 복과 땅의 기름진 복과 생명의 복이 우리 사랑하는 <strong>00</strong>에게 충만히 임하길 기도합니다. 예수님 이름으로 기도합니다. 아멘.</p>
+            </div>
+          </div>
+
+          <div class="article-block split-2">
+            <div class="prose">
+              <h3 class="block-title">걸림돌 제거하기</h3>
+              <p><strong>시간이 없다면</strong> 하루 10분부터 일단 모이는 것으로 시작해 보세요. <strong>해본 적이 없다면</strong> 형식에 얽매이지 말고 말씀을 중심으로 솔직한 이야기와 기도를 나누면 됩니다. <strong>안 좋은 추억이 있다면</strong> 일방적인 훈계 대신 축복과 소통의 시간으로 새롭게 출발하고, <strong>다 함께 모이기 힘들 때는</strong> 짧게라도 함께 기도하는 마음을 먼저 지켜가세요. 변화가 더디더라도 하나님께서 가정예배를 통해 친히 일하심을 신뢰하며 지속하는 것이 중요합니다.</p>
+            </div>
+            <div>
+              <h3 class="block-title">샘물플레싱을 잘하기 위한 10가지 팁</h3>
+              <ul class="bullet-list">
+                <li><strong>① 기도로 준비한다 :</strong> 가정예배가 정착되지 못하도록 방해하는 영적 싸움을 기도로 준비합니다.</li>
+                <li><strong>② 부모가 인도한다 :</strong> 가정 안에서 부모의 영적인 권위를 세우는 가장 좋은 길입니다.</li>
+                <li><strong>③ 딱딱하고 지루하지 않도록 한다 :</strong> 자연스럽고 편안하며 즐거운 분위기를 만듭니다.</li>
+                <li><strong>④ 짧게 드리는 것을 두려워하지 않는다 :</strong> 매일 조금씩 드려도 평생의 습관이 되는 것이 좋습니다.</li>
+                <li><strong>⑤ 반드시 축복기도가 포함되게 한다 :</strong> 자녀가 하나님을 만나고 부모와 깊은 유대감·건강한 자존감을 갖게 합니다.</li>
+                <li><strong>⑥ 가정마다 고유한 특성을 살린다 :</strong> 사도신경, 주기도문, 성경암송, 간식시간 등을 자유롭게 넣습니다.</li>
+                <li><strong>⑦ 자녀가 어릴 때 시작할수록 좋다 :</strong> 어릴수록 가정예배를 당연한 일상으로 받아들입니다.</li>
+                <li><strong>⑧ 기도를 길게 하지 않는다 :</strong> 가정예배에서의 기도는 간결하게 드립니다.</li>
+                <li><strong>⑨ 설교하지 말라 :</strong> 말씀을 함께 듣고 읽는 것만으로도 충분합니다.</li>
+                <li><strong>⑩ 기도는 구체적이고 실제적이어야 한다 :</strong> 가족 구성원의 실제 기도제목을 나누고 함께 기도합니다.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="next-4" class="sub-panel">
+          <div class="article-head"><h2>샘물학교</h2><p>샘물교회가 2006년 설립한 기독교 대안학교입니다.</p></div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[샘물학교 캠퍼스 · 배움 현장 실사]</strong></div>
+            <div>
+              <p>분당에 위치한 샘물학교는 샘물교회가 2006년 설립한 기독교 대안학교로, 교회와 가정, 학교가 연합하여 자녀를 신앙의 제자로 양육하는 ‘교회와 함께하는 기독교 교육’의 대표적인 모델입니다.</p>
+              <a href="https://www.smcs.or.kr/" target="_blank" class="simple-cta">샘물학교 공식 홈페이지 (www.smcs.or.kr) 방문하기 →</a>
+            </div>
+          </div>
+          <div class="article-block split-2 prose">
+            <div>
+              <h3 class="block-title">1. 모태와 출발: 샘물교회의 헌신 (2006년~)</h3>
+              <p>샘물교회는 성도의 자녀들에게 세상의 가치관이 아닌 성경적 세계관에 기초한 교육을 제공하기 위해 2006년 3월에 유치 및 초등 과정의 기독교 대안학교인 샘물학교를 설립했습니다.</p>
+            </div>
+            <div>
+              <h3 class="block-title">2. ‘언약의 자녀 양육’이라는 공동의 비전</h3>
+              <p>샘물학교는 단순한 공간 대여나 일회성 사업을 넘어, 성경적 쉐마(Shema) 교육의 명령에 순종하여 교회-가정-학교가 한 몸처럼 동역하는 공동체로 기능합니다. 개혁신앙에 뿌리를 두고 지식 전달을 넘어 그리스도의 ‘섬기는 제자’를 길러내는 것을 핵심 비전으로 삼고 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="next-5" class="sub-panel">
+          <div class="article-head"><h2>샘물 어린이 작은도서관</h2><p>지역사회를 섬기고자 17,000여 권의 도서를 구비한 어린이 도서관입니다.</p></div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[샘물 어린이 작은도서관 열람실 실사]</strong></div>
+            <div>
+              <p>‘샘물 어린이 작은도서관’은 샘물교회에서 지역사회를 섬기고자 만든 도서관으로, 어린이들을 사랑하는 마음으로 정성껏 마련한 17,000여 권의 도서가 구비되어 있습니다. 미래의 주인공이 될 어린이들이 책과 친구하며, 책을 통해 소중한 삶의 지침들을 배워 가는 곳으로 쓰임 받기를 소망합니다.</p>
+              <p><strong>이용시간 :</strong> 평일(월~금) 오후 1시 ~ 오후 5시 / 주일 오전 10시 ~ 오후 2시<br>
+              <strong>회원 및 대출 :</strong> 한 번 등록으로 평생회원이 되며(평생회비 2,000원 / 재발급비 500원), 대출 시 반드시 회원증을 소지하셔야 합니다. 대출기간은 7일, 1인당 2권까지 가능하며 연장은 방문 시 1회에 한합니다(전화 연장 불가, 초과 시 1일 1권당 100원 연체료).</p>
+              <p style="color:var(--brand-teal); font-weight:600; margin-bottom:18px;">※ 7세 이하 어린이는 반드시 부모님이 함께 오셔서 지도하여 주시기 바랍니다. (평생회비 및 연체료는 전액 도서구입 및 도서관 운영을 위해 사용됩니다.)</p>
+              <a href="tel:031-714-3013" class="simple-cta-box">전화걸기 · 도서관 문의 (031-714-3013) →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       [CATEGORY 5] 선교와 섬김 (4개 메뉴)
+       ========================================================= -->
+  <section id="view-mission" class="view-section">
+    <div class="sub-masthead">
+      <div class="wrap">
+        <span>MISSION &amp; SERVING</span>
+        <h1>선교와 섬김</h1>
+      </div>
+    </div>
+
+    <div class="wrap sub-layout">
+      <aside class="side-index">
+        <div class="side-index-head">선교와 섬김</div>
+        <ul class="side-nav-list">
+          <li><button class="side-link active" data-panel="mission-1" onclick="switchPanel('mission', 'mission-1')">섬김사역</button></li>
+          <li><button class="side-link" data-panel="mission-2" onclick="switchPanel('mission', 'mission-2')">국내외 선교</button></li>
+          <li><button class="side-link" data-panel="mission-3" onclick="switchPanel('mission', 'mission-3')">순교자 기념관</button></li>
+          <li><button class="side-link" data-panel="mission-4" onclick="switchPanel('mission', 'mission-4')">협력 기관</button></li>
+        </ul>
+      </aside>
+
+      <div>
+        <div id="mission-1" class="sub-panel active">
+          <div class="article-head"><h2>섬김사역</h2><p>교회 안의 연약한 지체부터 지역의 이웃, 환우와 가정에 이르기까지 함께 걸어갑니다.</p></div>
+          <div class="essay-list">
+            <div class="essay-item">
+              <h4>사랑부</h4>
+              <p>하나님의 사랑 안에서 발달장애인(지적장애, 뇌병변, 자폐 등) 지체들과 함께 예배하며, 각자의 눈높이에 맞춘 말씀과 교제로 영적 성장을 이뤄가는 사랑의 공동체입니다.</p>
+              <div class="essay-meta">대상: 발달장애인 · 시간: 주일 오전 10:00 · 장소: 본당 103호</div>
+            </div>
+            <div class="essay-item">
+              <h4>상담부</h4>
+              <p>우울·불안·관계 갈등 등 삶의 어려움을 성경적 메시지를 바탕으로 함께 풀어갑니다. 아동·청소년·개인·부부 상담, 미술치료, 심리·성격·진로 검사 등 다양한 분야를 다루며 자녀의 적성 발견부터 진로 설계, 학습 습관, 부모-자녀 소통까지 지원합니다.</p>
+              <div class="essay-meta">문의: 070-8808-7835 (전화상담 가능)</div>
+            </div>
+            <div class="essay-item">
+              <h4>에바다부</h4>
+              <p>청각장애인을 섬기는 샘물교회의 농아부입니다. 손으로 드리는 찬양과 기도로 조용하지만 깊은 예배를 나누며, 뉴욕밀알·에바다 2개 목장으로 구성되어 주일마다 교제와 나눔을 이어가고 있습니다.</p>
+              <div class="essay-meta">대상: 청각장애인 · 시간: 주일 오후 2:00 (수어통역) · 장소: 본당 2층 대예배실 (예배 후 103호 목장 모임)</div>
+            </div>
+            <div class="essay-item">
+              <h4>입양사랑부</h4>
+              <p>2005년부터 이어온 입양 가족 공동체로, 서로의 아이를 내 자녀처럼 아끼며 하나님께서 우리를 양자 삼아 주신 사랑을 삶으로 나눕니다. 입양에 관심 있거나 기도 중인 분들께 언제든 도움이 되어 드리며, 매년 5월 마지막 주일을 입양사랑주일로 지킵니다.</p>
+              <div class="essay-meta">대상: 샘물교회 모든 입양 가족 · 시간: 정기 모임(6월, 12월), 수시 모임</div>
+            </div>
+            <div class="essay-item">
+              <h4>중보기도부</h4>
+              <p>100여 명의 헌신자가 매일 릴레이로 기도하는 공동체입니다. 교회 1층 중보기도실 또는 가정에서 요일별 1시간씩 기도하며, 긴급·일반 기도제목을 접수해 3~6개월간 중보합니다. 정회원이라면 소정의 교육 후 누구든 참여할 수 있습니다.</p>
+              <div class="essay-meta">대상: 샘물교회 정회원 · 시간: 매일 오전 6:00 ~ 오후 7:00 (1시간 단위) · 장소: 1층 중보기도실</div>
+            </div>
+            <div class="essay-item">
+              <h4>지역사회봉사부</h4>
+              <p>분당 지역의 독거노인·장애인·환우 가정을 직접 방문해 섬깁니다. 조리된 반찬을 포장해 전달하고, 간단한 가사 도움과 말벗 역할을 통해 따뜻한 이웃 사랑을 실천합니다.</p>
+              <div class="essay-meta">대상: 함께하고자 하는 누구나 · 시간: 매주 목요일 오전 10:00~12:00 · 장소: 지하 1층 식당</div>
+            </div>
+            <div class="essay-item">
+              <h4>호스피스</h4>
+              <p>호스피스 봉사부는 2000년부터 샘물호스피스병원(1993년 설립, 현재 90병동 운영)에서 말기 암 환우들을 섬기고 있습니다. 현재 30여 명이 6개조로 활동하며 사랑과 헌신으로 환우와 가족을 돌보며 평안한 임종과 구원의 소망을 전합니다.</p>
+              <div class="essay-meta">대상: 호스피스 교육을 받은 성도 · 시간: 월·화·목·금·토 오전 10:30 · 장소: 샘물호스피스병원</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="mission-2" class="sub-panel">
+          <div class="article-head"><h2>국내외 선교</h2><p>농촌·낙도 미자립교회부터 군 장병, 파송 선교사님들까지 기도와 발걸음으로 동역합니다.</p></div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[국내선교 단기봉사 현장 실사]</strong></div>
+            <div>
+              <h3 class="block-title">국내선교</h3>
+              <p>농촌·낙도지역 미자립교회를 지원할 뿐만 아니라 여름 봉사 사역을 통해 해당 지역에 교회가 잘 정착하고 성장하도록 돕습니다. 청장년들의 여름 단기봉사를 통해 이용/미용 봉사, 도배사역, 의료봉사, 찬양사역, 마을어른 섬기기를 진행하며 낙도교회의 열악한 환경개선 및 시설보수도 지원합니다.</p>
+            </div>
+          </div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[군선교 진중세례식 현장 실사]</strong></div>
+            <div>
+              <h3 class="block-title">군선교</h3>
+              <p>샘물교회 교인 중 군(경찰)에 복무 중인 장병 격려, 신병교육대 진중세례식 후원 및 복음제시(전도폭발팀), 신앙교육과 군 생활 적응 지원, 부대 면회, 병영상담, 입대 장병 동영상 촬영(송구영신예배 활용) 등을 연중 실시하고 있습니다.</p>
+            </div>
+          </div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[해외선교 파송 선교사 사역 실사]</strong></div>
+            <div>
+              <h3 class="block-title">해외선교</h3>
+              <p>샘물교회가 파송한 선교사님들의 사역을 전방위로 지원합니다. 후원 목장 연결, 기도 편지 전달, 선교관·차량·건강검진·장학금·연금 지원 등 실질적인 돌봄을 담당하며 성도와 선교사 간 깊은 동역 관계를 이어갑니다. 매년 <strong>2월 선교주일</strong>과 <strong>7월 순교기념주일</strong>을 통해 선교의 비전을 함께 나눕니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="mission-3" class="sub-panel">
+          <div class="article-head"><h2>순교자 기념관</h2><p>하나님 나라를 위해 목숨을 버리신 순교자를 기리고 재헌신을 결심하는 공간입니다.</p></div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[순교자 기념관 내부 실제 사진]</strong></div>
+            <div>
+              <p>샘물교회 순교자 기념관은 하나님 나라를 위해 목숨을 버리신 순교자를 기리기 위해 성도들의 마음을 모아 개관되었습니다. 1884년 복음이 어두운 이 땅에 비추인 이래 순교의 부르심을 입은 우리의 형제들을 기념하며, 성도들이 믿음의 용기를 얻게 되는 장소입니다.</p>
+              <blockquote class="pull-quote">
+                “복음을 위해 자신의 모든 것을 내어 놓은 순교자들을 따라 성도들이 재헌신을 결심하는 성소가 되기를 소망합니다.”
+              </blockquote>
+              <p><strong>위치 :</strong> 샘물교회 1층 (성남시 분당구 내정로 17번길 8, 정자동)<br>
+              <strong>관람 시간 :</strong> 주일 오전 9:00 ~ 오후 6:00 (주중 방문은 교회사무실 031-715-3390 전화 신청 후 가능)</p>
+              <a href="http://afmartyr.kr/sub0502/" target="_blank" class="simple-cta">영혼의 쉼터 순교자 기념관 바로가기 →</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="mission-4" class="sub-panel">
+          <div class="article-head"><h2>협력 기관</h2><p>소외된 이웃과 보호종료청소년 자립을 위해 함께 동역하는 협력 기관입니다.</p></div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[말아톤복지재단 · 올 카페 실사]</strong></div>
+            <div>
+              <h3 class="block-title">말아톤복지재단</h3>
+              <p>샘물교회는 가정과 사회에서 소외되어가는 발달장애인들을 섬기는 전문사역에 함께하고 있으며, 말아톤복지재단을 지원함으로 주간보호센터, 그룹홈, 사랑온을 운영하고 샘물교회 1층에 “올”(All) 커피엔티(카페)를 함께 운영하고 있습니다.</p>
+              <a href="https://malaton.or.kr/" target="_blank" class="simple-cta">말아톤복지재단 홈페이지 (malaton.or.kr) →</a>
+            </div>
+          </div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[사랑마루 무료급식 현장 실사]</strong></div>
+            <div>
+              <h3 class="block-title">사랑마루</h3>
+              <p>샘물교회 섬김 사역으로 성남 모란역, 태평역 일대의 일용직 근로자들과 독거노인들에게 아침식사를 제공하는 무료급식과 다문화가정 돕기 등의 사역을 시작하였으며, 현재는 노숙인 자립지원을 위해 사회적협동조합 법인을 설립하여 사역을 지속하고 있습니다.</p>
+              <a href="http://sarangmaru.org/" target="_blank" class="simple-cta">사랑마루 홈페이지 (sarangmaru.org) →</a>
+            </div>
+          </div>
+          <div class="article-block split-asym prose">
+            <div class="photo-frame"><strong>[선한울타리 멘토링 현장 실사]</strong></div>
+            <div>
+              <h3 class="block-title">선한울타리</h3>
+              <p>샘물교회 성도님들로 시작된 선한울타리 사역은 보육원을 퇴소한 청소년들에게 주거를 마련해 줄 뿐만 아니라, 영적·정신적 안정을 위해 신앙과 인품이 있는 멘토들을 연결해 지속적으로 상담하고 돌봄으로써 건강한 사회구성원으로 자립할 수 있도록 돕습니다.</p>
+              <a href="https://goodhaven.or.kr/" target="_blank" class="simple-cta">선한울타리 홈페이지 (goodhaven.or.kr) →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 공통 매거진 푸터 -->
+  <footer class="ed-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <div class="footer-name">샘물교회</div>
+        <p>(13613) 경기도 성남시 분당구 내정로 17번길 8 (정자동) · 대한예수교장로회(고신)</p>
+        <p>대표전화 031-715-3390 · FAX 031-715-3398 · 창립 1998.10.25</p>
+      </div>
+      <div style="text-align:right;">
+        <p>© Saemmul Church. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       1. 메인 풀페이지 히어로 캐러셀 (5초 오토플레이 + 호버 일시정지 + 점 페이지네이션)
+       ========================================================= */
+    let currentHeroIdx = 0;
+    let heroTimer = null;
+
+    function renderHeroSlide(idx) {
+      currentHeroIdx = idx;
+      document.querySelectorAll('.hero-slide-item').forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+      });
+      document.querySelectorAll('.dot-btn').forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+    }
+
+    function manualHeroSlide(idx) {
+      renderHeroSlide(idx);
+      startHeroAuto();
+    }
+
+    function startHeroAuto() {
+      stopHeroAuto();
+      heroTimer = setInterval(() => {
+        const nextIdx = (currentHeroIdx + 1) % 2;
+        renderHeroSlide(nextIdx);
+      }, 5000);
+    }
+
+    function stopHeroAuto() {
+      if (heroTimer) {
+        clearInterval(heroTimer);
+        heroTimer = null;
+      }
+    }
+
+    function pauseHeroAuto() {
+      stopHeroAuto();
+    }
+
+    /* =========================================================
+       2. 네비게이션 및 서브패널 전환
+       ========================================================= */
+    function goMain() {
+      document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.gnb-link').forEach(b => b.classList.remove('active'));
+      document.getElementById('view-home').classList.add('active');
+      document.getElementById('mobileDrawer').classList.remove('open');
+      startHeroAuto();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openCategory(catKey, panelId) {
+      stopHeroAuto();
+      document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.gnb-link').forEach(b => b.classList.remove('active'));
+      document.getElementById('view-' + catKey).classList.add('active');
+      const gnbBtn = document.getElementById('gnb-' + catKey);
+      if (gnbBtn) gnbBtn.classList.add('active');
+      switchPanel(catKey, panelId);
+    }
+
+    function switchPanel(catKey, panelId) {
+      const view = document.getElementById('view-' + catKey);
+      view.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+      view.querySelectorAll('.side-link').forEach(b => b.classList.remove('active'));
+      const targetPanel = document.getElementById(panelId);
+      if (targetPanel) targetPanel.classList.add('active');
+      const targetBtn = view.querySelector(`.side-link[data-panel="${panelId}"]`);
+      if (targetBtn) targetBtn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* =========================================================
+       3. 모바일 햄버거 아코디언 메뉴
+       ========================================================= */
+    function toggleMobileDrawer() {
+      document.getElementById('mobileDrawer').classList.toggle('open');
+    }
+
+    function toggleMobileAcc(triggerBtn) {
+      const item = triggerBtn.parentElement;
+      const wasExpanded = item.classList.contains('expanded');
+      document.querySelectorAll('.m-acc-item').forEach(el => el.classList.remove('expanded'));
+      if (!wasExpanded) item.classList.add('expanded');
+    }
+
+    function mobileNav(catKey, panelId) {
+      document.getElementById('mobileDrawer').classList.remove('open');
+      openCategory(catKey, panelId);
+    }
+
+    /* =========================================================
+       4. 섬기는 사람들 상단 앵커 스크롤 이동 & 시설 안내 양방향 호버
+       ========================================================= */
+    function scrollToStaff(targetId) {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const y = el.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    function hoverFloor(floorKey) {
+      document.querySelectorAll(`[data-floor="${floorKey}"]`).forEach(el => el.classList.add('is-hovered'));
+    }
+
+    function clearFloor() {
+      document.querySelectorAll('.is-hovered').forEach(el => el.classList.remove('is-hovered'));
+    }
+
+    /* =========================================================
+       5. 새가족 안내 네 가지 기둥 스크롤 강조 효과
+       ========================================================= */
+    function updatePillarScrollFocus() {
+      const intro3 = document.getElementById('intro-3');
+      if (!intro3 || !intro3.classList.contains('active')) return;
+      const pillars = intro3.querySelectorAll('.pillar-item');
+      const triggerY = window.innerHeight * 0.55;
+      pillars.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top <= triggerY && rect.bottom >= triggerY * 0.35) {
+          item.classList.add('in-focus');
+        } else {
+          item.classList.remove('in-focus');
+        }
+      });
+    }
+    window.addEventListener('scroll', updatePillarScrollFocus, { passive: true });
+
+    /* =========================================================
+       6. 예배와 말씀 (10개씩 페이지네이션) & 샘물 경조사 (15개씩 페이지네이션)
+       ========================================================= */
+    const sermonData = {
+      sunday: Array.from({ length: 25 }, (_, i) => ({
+        no: 142 - i,
+        date: `2026.${String(11 - Math.floor(i / 4)).padStart(2, '0')}.${String(28 - (i % 4) * 7).padStart(2, '0')}`,
+        title: i === 0 ? '내 안에 고인 행복이 흘러갈 때' : i === 1 ? '예수 행복, 예수 사랑으로 사람을 남기다' : i === 2 ? '식탁을 나누며 세워지는 작은 교회' : `주일예배 말씀 아카이브 (${142 - i}회)`,
+        passage: i === 0 ? '요한복음 4:13~14' : i === 1 ? '다니엘 12:1~3' : '사도행전 2:42~47',
+        preacher: '채경락 담임목사'
+      })),
+      wed: Array.from({ length: 20 }, (_, i) => ({
+        no: 88 - i,
+        date: `2026.${String(11 - Math.floor(i / 4)).padStart(2, '0')}.${String(25 - (i % 4) * 7).padStart(2, '0')}`,
+        title: i === 0 ? '기도의 자리에 부어주시는 은혜의 샘' : i === 1 ? '부르짖음에 응답하시는 신실한 하나님' : `수요기도회 말씀 아카이브 (${88 - i}회)`,
+        passage: i === 0 ? '시편 42:1~5' : '예레미야 33:1~3',
+        preacher: i % 3 === 1 ? '심민재 목사' : '채경락 담임목사'
+      })),
+      dawn: Array.from({ length: 30 }, (_, i) => ({
+        no: 312 - i,
+        date: `2026.11.${String(Math.max(1, 13 - (i % 13))).padStart(2, '0')}`,
+        title: i === 0 ? '새벽을 깨우는 하나님의 세미한 음성' : i === 1 ? '광야에서 길을 내시는 주님의 손길' : `새벽기도회 말씀 아카이브 (${312 - i}회)`,
+        passage: i === 0 ? '열왕기상 19:9~14' : '이사야 43:18~21',
+        preacher: i % 4 === 2 ? '전성안 목사' : '채경락 담임목사'
+      })),
+      youth: Array.from({ length: 20 }, (_, i) => ({
+        no: 64 - i,
+        date: `2026.${String(11 - Math.floor(i / 4)).padStart(2, '0')}.${String(28 - (i % 4) * 7).padStart(2, '0')}`,
+        title: i === 0 ? '일상의 갈증을 은혜로 채우는 청년의 길' : i === 1 ? '불확실한 시대를 건너는 믿음의 기준' : `청년예배 4부 말씀 아카이브 (${64 - i}회)`,
+        passage: i === 0 ? '시편 119:9~16' : '로마서 12:1~2',
+        preacher: '전성안 목사'
+      }))
+    };
+
+    function renderSermonPage(type, pageNum) {
+      const list = sermonData[type];
+      const perPage = 10;
+      const totalPages = Math.ceil(list.length / perPage);
+      const start = (pageNum - 1) * perPage;
+      const slice = list.slice(start, start + perPage);
+
+      const tbody = document.getElementById('sermonList-' + type);
+      tbody.innerHTML = slice.map(item => `
+        <tr>
+          <td>${item.no}</td>
+          <td>${item.date}</td>
+          <td><strong>${item.title}</strong></td>
+          <td>${item.passage}</td>
+          <td>${item.preacher}</td>
+        </tr>
+      `).join('');
+
+      const pageBar = document.getElementById('sermonPage-' + type);
+      pageBar.innerHTML = Array.from({ length: totalPages }, (_, idx) => {
+        const p = idx + 1;
+        return `<button class="page-num-btn ${p === pageNum ? 'active' : ''}" onclick="renderSermonPage('${type}', ${p})">${p}</button>`;
+      }).join('');
+    }
+
+    const familyEvents = [
+      { no: 1347, type: '소천', title: '[소천] 문석훈 집사(최산희 성도) 부친', date: '26.11.08' },
+      { no: 1346, type: '결혼', title: '[결혼] 한지혜 청년 결혼식 (11/14 토 오후 5시)', date: '26.11.08' },
+      { no: 1345, type: '개업', title: '[개업] 김도형 집사 개업 감사예배', date: '26.11.01' },
+      { no: 1344, type: '소천', title: '[소천] 최민수 성도 모친', date: '26.10.29' },
+      { no: 1343, type: '유아세례', title: '[유아세례] 김지환 유아세례 감사', date: '26.10.25' },
+      { no: 1342, type: '결혼', title: '[결혼] 박준영 청년 결혼식 (10/24 토 오후 1시)', date: '26.10.20' },
+      { no: 1341, type: '소천', title: '[소천] 박현아 집사 부친', date: '26.10.14' },
+      { no: 1340, type: '소천', title: '[소천] 김성호 집사(이은정 집사) 부친', date: '26.10.07' },
+      { no: 1339, type: '소천', title: '[소천] 우상혁 집사(이지혜 집사) 부친', date: '26.09.30' },
+      { no: 1338, type: '소천', title: '[소천] 서공문 장로(최경미 권사) 모친', date: '26.09.24' },
+      { no: 1337, type: '결혼', title: '[결혼] 조동혁 청년 결혼식 (10/3 토 낮 12:30)', date: '26.09.20' },
+      { no: 1336, type: '소천', title: '[소천] 김인옥 성도 부친', date: '26.09.13' },
+      { no: 1335, type: '결혼', title: '[결혼] 서은혜 청년 결혼식 (9/19 토 오후 12:40)', date: '26.09.13' },
+      { no: 1334, type: '소천', title: '[소천] 배종해 집사 모친', date: '26.09.09' },
+      { no: 1333, type: '소천', title: '[소천] 정수정 권사 부친', date: '26.09.02' },
+      { no: 1332, type: '결혼', title: '[결혼] 조민석 청년 결혼식 (9/5 토 오후 2:30)', date: '26.08.30' },
+      { no: 1331, type: '결혼', title: '[결혼] 최규필 청년 결혼식 (8/29 토 낮 12:00)', date: '26.08.23' },
+      { no: 1330, type: '소천', title: '[소천] 이동규 집사(정현아 집사) 모친', date: '26.08.21' },
+      { no: 1329, type: '결혼', title: '[결혼] 김도아 청년 결혼식 (8/22 토 오후 1시)', date: '26.08.16' },
+      { no: 1328, type: '개업', title: '[개업] 이정훈 집사 사업장 개업 감사', date: '26.08.09' }
+    ];
+
+    function renderFamilyEvents(pageNum) {
+      const perPage = 15;
+      const totalPages = Math.ceil(familyEvents.length / perPage);
+      const start = (pageNum - 1) * perPage;
+      const slice = familyEvents.slice(start, start + perPage);
+
+      document.getElementById('familyEventBody').innerHTML = slice.map(ev => `
+        <tr>
+          <td>${ev.no}</td>
+          <td><span class="meta-tag">${ev.type}</span></td>
+          <td><strong>${ev.title}</strong></td>
+          <td>${ev.date}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('familyEventPages').innerHTML = Array.from({ length: totalPages }, (_, idx) => {
+        const p = idx + 1;
+        return `<button class="page-num-btn ${p === pageNum ? 'active' : ''}" onclick="renderFamilyEvents(${p})">${p}</button>`;
+      }).join('');
+    }
+
+    function filterNextNews(dept, btnEl) {
+      btnEl.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btnEl.classList.add('active');
+      document.querySelectorAll('#nextNewsTable tbody tr').forEach(row => {
+        row.style.display = (dept === 'ALL' || row.dataset.dept === dept) ? '' : 'none';
+      });
+    }
+
+    function switchPrayer(evt, prayerId) {
+      evt.target.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      evt.target.classList.add('active');
+      document.querySelectorAll('.prayer-item').forEach(item => item.style.display = 'none');
+      document.getElementById(prayerId).style.display = 'block';
+    }
+
+    // 초기 렌더링 실행
+    startHeroAuto();
+    renderSermonPage('sunday', 1);
+    renderSermonPage('wed', 1);
+    renderSermonPage('dawn', 1);
+    renderSermonPage('youth', 1);
+    renderFamilyEvents(1);
+  </script>
+</body>
+</html>
